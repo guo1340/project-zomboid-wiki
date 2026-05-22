@@ -59,7 +59,7 @@
         <ins class="adsbygoogle"
           style="display:block;${isBanner ? 'width:100%;height:90px;' : ''}"
           data-ad-client="ca-pub-1319817671788428"
-          data-ad-slot="0000000000"
+          data-ad-slot="6141169453"
           ${isBanner ? '' : 'data-ad-format="auto"'}
           data-full-width-responsive="true"></ins>
       </aside>
