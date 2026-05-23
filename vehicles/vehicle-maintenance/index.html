@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- pzw:head -->
+    <title>Vehicle Maintenance Guide | Project Zomboid Survival Wiki</title>
+    <meta name="description" content="Learn how to maintain vehicles in Project Zomboid, what parts matter most, and how the Mechanics skill affects long-term survival." />
+    <meta name="keywords" content="project zomboid mechanics, project zomboid vehicle repair, project zomboid car maintenance" />
+    <link rel="canonical" href="https://projectzomboid.gamewikihub.com/vehicles/vehicle-maintenance" />
+    <meta property="og:site_name" content="Project Zomboid Survival Wiki" />
+    <meta property="og:title" content="Vehicle Maintenance Guide | Project Zomboid Survival Wiki" />
+    <meta property="og:description" content="Learn how to maintain vehicles in Project Zomboid, what parts matter most, and how the Mechanics skill affects long-term survival." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://projectzomboid.gamewikihub.com/vehicles/vehicle-maintenance" />
+    <meta property="og:image" content="https://projectzomboid.gamewikihub.com/assets/images/vehicles/vehicle-maintenance.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Vehicle Maintenance Guide | Project Zomboid Survival Wiki" />
+    <meta name="twitter:description" content="Learn how to maintain vehicles in Project Zomboid, what parts matter most, and how the Mechanics skill affects long-term survival." />
+    <meta name="twitter:image" content="https://projectzomboid.gamewikihub.com/assets/images/vehicles/vehicle-maintenance.jpg" />
+    <!-- /pzw:head -->
+    <script type="application/ld+json" id="pzw-jsonld">{"@context":"https://schema.org","@type":"Article","headline":"Vehicle Maintenance","description":"Learn how to maintain vehicles in Project Zomboid, what parts matter most, and how the Mechanics skill affects long-term survival.","image":"https://projectzomboid.gamewikihub.com/assets/images/vehicles/vehicle-maintenance.jpg","url":"https://projectzomboid.gamewikihub.com/vehicles/vehicle-maintenance","datePublished":"2026-05-22","dateModified":"2026-05-22","author":{"@type":"Organization","name":"Project Zomboid Survival Wiki"},"publisher":{"@type":"Organization","name":"Project Zomboid Survival Wiki","url":"https://projectzomboid.gamewikihub.com"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://projectzomboid.gamewikihub.com/vehicles/vehicle-maintenance"}}</script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23121212'/%3E%3Ccircle cx='50' cy='50' r='30' fill='none' stroke='%239B2C2C' stroke-width='8'/%3E%3Ccircle cx='50' cy='50' r='9' fill='%23B7A369'/%3E%3Cpath d='M50 16 Q44 34 50 42 Q56 34 50 16Z' fill='%23B7A369'/%3E%3Cpath d='M22 70 Q40 60 46 50 Q33 50 22 70Z' fill='%23B7A369'/%3E%3Cpath d='M78 70 Q60 60 54 50 Q67 50 78 70Z' fill='%23B7A369'/%3E%3C/svg%3E"
+    />
+
+    <!-- ============================================
+     Google AdSense
+     To enable ads: replace ca-pub-XXXXXXXXXXXXXXXX in
+     index.html, app.js and ads.txt with your publisher
+     ID and slot IDs, then uncomment the script below.
+     ============================================ -->
+
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1319817671788428"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="scanlines" aria-hidden="true"></div>
+
+    <header class="site">
+      <a class="logo" href="/">
+        <span class="logo-mark">PZ</span>
+        <span class="logo-text"
+          >PROJECT ZOMBOID<small>WIKI · unofficial survival manual</small></span
+        >
+      </a>
+      <div class="search">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search traits, skills, weapons, maps…"
+          autocomplete="off"
+          aria-label="Search the wiki"
+        />
+        <div class="search-results" id="searchResults"></div>
+      </div>
+      <nav class="top" aria-label="Primary">
+        <a href="/guides">Guides</a>
+        <a href="/traits">Traits</a>
+        <a href="/skills">Skills</a>
+        <a href="/weapons">Weapons</a>
+        <a href="/maps">Maps</a>
+        <a href="/build42">Build 42</a>
+        <a href="/about">About</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        ☰
+      </button>
+    </header>
+
+    <div class="emergency-bar" aria-hidden="true">
+      <span
+        >⚠ KNOX COUNTY UNDER QUARANTINE — DO NOT ATTEMPT TO LEAVE THE EXCLUSION
+        ZONE — STAY INDOORS — AWAIT FURTHER INSTRUCTION ⚠</span
+      >
+      <span
+        >⚠ KNOX COUNTY UNDER QUARANTINE — DO NOT ATTEMPT TO LEAVE THE EXCLUSION
+        ZONE — STAY INDOORS — AWAIT FURTHER INSTRUCTION ⚠</span
+      >
+    </div>
+
+    <div class="layout">
+      <aside class="left" id="leftNav"></aside>
+      <main id="main">
+      
+      <aside class="ad-slot ad-banner" aria-label="Advertisement">
+        <span class="ad-label">Advertisement</span>
+        <ins class="adsbygoogle"
+          style="display:block;width:100%;height:90px;"
+          data-ad-client="ca-pub-1319817671788428"
+          data-ad-slot="6141169453"
+          
+          data-full-width-responsive="true"></ins>
+      </aside>
+    
+      <div class="page article">
+        <div class="breadcrumb"><a href="/vehicles">Vehicles</a> / Vehicle Maintenance</div>
+        <h1>Vehicle Maintenance</h1>
+        <figure class="page-hero">
+      <img src="/assets/images/vehicles/vehicle-maintenance.jpg" alt="A Project Zomboid garage scene representing vehicle repair and maintenance" width="1200" height="500"
+        onerror="this.closest('.page-hero').classList.add('hero-missing');this.remove();">
+      <span class="hero-fallback" aria-hidden="true">Vehicle Maintenance</span>
+    </figure>
+        <p class="lore">Vehicle maintenance does not feel urgent until the car fails during a horde escape. By then, the lesson is usually permanent.</p>
+        <h3>Maintenance Is Boring Until It Saves Your Life</h3><p>A neglected car is a countdown timer. The trip where it finally matters is rarely a calm one — it is the horde escape, the long supply run, the rainy night far from base. Maintenance is how you make sure the timer never runs out at the worst moment.</p><h3>Parts To Watch</h3><ul><li>Engine condition</li><li>Battery charge</li><li>Tyre condition</li><li>Brakes</li><li>Suspension</li><li>Windshield and windows</li><li>Trunk condition</li></ul><p>Engine and tyres are the survival-critical pair. The rest degrade your control and protection, which still gets people killed — just more slowly.</p><h3>Mechanics XP Strategy</h3><p>Read <a href="/skills/mechanics">Mechanics</a> skill books when you find them, inspect vehicles regularly, and remove and reinstall parts you can safely handle to build XP. Practise in a cleared area, never beside a horde — a failed part job under pressure is how a routine task becomes a death.</p><h3>Long-Term Vehicle Setup</h3><ul><li>Spare gas cans</li><li>A spare battery</li><li>Spare tyres</li><li>Tools</li><li>Emergency food and water</li><li>A backup weapon</li><li>Medical supplies</li></ul><p>Keep this kit in the trunk of any vehicle you rely on. A car is also a mobile cache, and the day something goes wrong far from base you will be glad it was stocked.</p><h3>Survivor Tip</h3><div class="callout tip"><span class="callout-label">Survivor Tip</span>A survivor with two decent cars is safer than a survivor with one perfect car.</div>
+        <div class="survivor-tip"><span class="st-label">Survivor Tip</span><p>&ldquo;Fill every water container before the water shutoff arrives.&rdquo;</p></div>
+        <nav class="related" aria-label="Related pages">
+      <h3>Related Pages</h3>
+      <div class="related-grid">
+        <a class="related-card" href="/skills/mechanics">Mechanics Skill</a><a class="related-card" href="/skills/electrical">Electrical Skill</a><a class="related-card" href="/vehicles/best-vehicles">Best Vehicles</a><a class="related-card" href="/occupations/mechanic">Mechanic Occupation</a>
+      </div>
+    </nav>
+        <aside class="source-notes" aria-label="Sources and update notes">
+      <div class="src-head">Sources &amp; Update Notes</div>
+      <div class="src-meta">
+        <span><strong>Last updated:</strong> 2026-05-22</span>
+        <span><strong>Build focus:</strong> Build 41 stable + Build 42 unstable notes</span>
+      </div>
+      <div class="src-checked"><strong>Sources checked:</strong></div>
+      <ul class="src-list"><li><a href="https://store.steampowered.com/app/108600/Project_Zomboid/" target="_blank" rel="noopener noreferrer">Project Zomboid Steam Store</a><span> — Used for the official game description and broad feature categories.</span></li><li><a href="https://pzwiki.net/wiki/Main_Page" target="_blank" rel="noopener noreferrer">Project Zomboid Wiki (community)</a><span> — Cross-referenced for trait, skill, weapon and map details.</span></li></ul>
+      
+      <p class="src-uncertain">Note: Build 42 systems are still changing between unstable patches. Treat exact numbers, recipes and requirements as patch-dependent.</p>
+    </aside>
+      </div>
+      
+      <aside class="ad-slot ad-in-article" aria-label="Advertisement">
+        <span class="ad-label">Advertisement</span>
+        <ins class="adsbygoogle"
+          style="display:block;"
+          data-ad-client="ca-pub-1319817671788428"
+          data-ad-slot="6141169453"
+          data-ad-format="auto"
+          data-full-width-responsive="true"></ins>
+      </aside>
+    
+    </main>
+      <aside class="right" id="rightNav"></aside>
+    </div>
+
+    <footer class="site">
+      <p class="footer-tagline">This is how you died.</p>
+      <nav class="footer-links" aria-label="External resources">
+        <a
+          href="https://store.steampowered.com/app/108600/Project_Zomboid/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Steam</a
+        >
+        <a
+          href="https://projectzomboid.com/blog/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Official Blog</a
+        >
+        <a
+          href="https://www.reddit.com/r/projectzomboid/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Reddit</a
+        >
+        <a href="/patches">Build News</a>
+      </nav>
+      <nav class="footer-links" aria-label="Site information">
+        <a href="/about">About</a>
+        <a href="/privacy-policy">Privacy Policy</a>
+        <a href="/contact">Contact</a>
+      </nav>
+      <p>
+        Unofficial fan wiki · Project Zomboid is © The Indie Stone · GameWikiHub
+        · &copy; 2026. All rights reserved.
+      </p>
+    </footer>
+
+    <script src="/js/data.js"></script>
+    <script src="/js/meta.js"></script>
+    <script src="/js/app.js"></script>
+  </body>
+</html>

@@ -15,6 +15,80 @@
 window.WikiData = {
 
   /* ---------------------------------------------------------- */
+  /*                       SITE CONFIG                          */
+  /* ---------------------------------------------------------- */
+  site: {
+    name: 'Project Zomboid Survival Wiki',
+    shortName: 'Project Zomboid Wiki',
+    baseUrl: 'https://projectzomboid.gamewikihub.com',
+    titleSuffix: 'Project Zomboid Survival Wiki',
+    defaultDescription: 'A practical Project Zomboid survival manual for Build 41 and Build 42 — traits, skills, weapons, vehicles, maps, mods, multiplayer and long-term strategy.',
+    defaultOgImage: '/assets/images/og/default-og.jpg',
+    lastUpdated: '2026-05-22',
+    buildStatus: 'Build 41 stable + Build 42 unstable notes'
+  },
+
+  /* ---------------------------------------------------------- */
+  /*                     SOURCE REGISTRY                        */
+  /* ---------------------------------------------------------- */
+  sourceRegistry: {
+    steamStore: {
+      label: 'Project Zomboid Steam Store',
+      url: 'https://store.steampowered.com/app/108600/Project_Zomboid/',
+      type: 'official',
+      note: 'Used for the official game description and broad feature categories.'
+    },
+    officialBlogB42: {
+      label: 'Official Build 42 Upcoming Features Blog',
+      url: 'https://projectzomboid.com/blog/upcoming-features-b42/',
+      type: 'official',
+      note: 'Used for Build 42 crafting, animal and system direction.'
+    },
+    officialBlog: {
+      label: 'Official Project Zomboid Blog',
+      url: 'https://projectzomboid.com/blog/',
+      type: 'official',
+      note: 'Used for developer updates and roadmap context.'
+    },
+    steamNews: {
+      label: 'Project Zomboid Steam News Hub',
+      url: 'https://store.steampowered.com/news/app/108600',
+      type: 'official',
+      note: 'Used for patch news and update announcements.'
+    },
+    indieStoneForums: {
+      label: 'The Indie Stone Forums',
+      url: 'https://theindiestone.com/forums/',
+      type: 'official/community',
+      note: 'Used for patch discussion and official forum posts.'
+    },
+    steamScreenshots: {
+      label: 'Steam Community Screenshots',
+      url: 'https://steamcommunity.com/app/108600/screenshots/',
+      type: 'community',
+      note: 'Reference only. User screenshots are not reused without permission.'
+    },
+    pcgamerHotwire: {
+      label: 'PC Gamer — How To Hotwire A Car',
+      url: 'https://www.pcgamer.com/project-zomboid-hotwire-a-car-how-to/',
+      type: 'press',
+      note: 'Used to paraphrase vehicle hotwiring requirements.'
+    },
+    pzwiki: {
+      label: 'Project Zomboid Wiki (community)',
+      url: 'https://pzwiki.net/wiki/Main_Page',
+      type: 'community',
+      note: 'Cross-referenced for trait, skill, weapon and map details.'
+    },
+    redditCommunity: {
+      label: 'r/projectzomboid',
+      url: 'https://www.reddit.com/r/projectzomboid/',
+      type: 'community',
+      note: 'Used for community survival consensus and beginner discussion patterns.'
+    }
+  },
+
+  /* ---------------------------------------------------------- */
   /*                      BEGINNER + ADVANCED GUIDES            */
   /* ---------------------------------------------------------- */
   guides: [
@@ -901,28 +975,149 @@ window.WikiData = {
   /* ---------------------------------------------------------- */
   vehicles: [
     {
-      id: 'how-to-hotwire-cars', name: 'How To Hotwire Cars',
-      intro: 'A working car changes the entire game — and hotwiring is how you get one without keys. Knowing the requirements turns "I found a car" into "I have transport."',
+      id: 'overview', name: 'Vehicles Overview',
+      intro: 'A working car is not just transportation. It is escape, storage, scouting, generator-hauling, and a way to abandon a doomed neighbourhood before pride turns into a bite wound.',
+      heroAlt: 'Abandoned car on a Project Zomboid road used for the vehicle survival guide',
+      seo: {
+        title: 'Vehicles Guide | Project Zomboid Survival Wiki',
+        description: 'Learn why vehicles matter in Project Zomboid, how to choose a car, manage fuel, avoid noise mistakes, and survive long-distance travel.',
+        keywords: ['project zomboid vehicles', 'project zomboid cars', 'project zomboid vehicle guide']
+      },
       sections: [
-        { h: 'Requirements', body: '<p>Hotwiring a car needs either the Burglar occupation, or investment in both Mechanical and Electrical skill. Without one of those, the car you found is just scenery. The vehicle also needs a healthy enough engine and some fuel to be worth the effort.</p>' },
-        { h: 'The Burglar Advantage', body: '<p>The Burglar occupation can hotwire any vehicle from the very start of a run, with no skill investment at all. That is why Burglar is so strongly associated with mobility-focused and beginner play — it removes the entire skill tax on transport.</p>' },
-        { h: 'Skill Requirements', body: '<p>For non-Burglars, hotwiring becomes possible with sufficient combined Mechanical and Electrical skill. Until you reach that threshold, prioritise finding car keys — they spawn on corpses, in nearby houses and in the car itself.</p>' },
-        { h: 'Fuel Management', body: '<p>A hotwired car with an empty tank is a dead end. Learn to siphon fuel from other vehicles and from pumps while power lasts, and keep spare fuel cans. Fuel planning is a survival skill in its own right.</p>' },
-        { h: 'Dashboard Indicators', body: '<p>Before committing to a vehicle, check the dashboard: engine condition, fuel level and battery charge. A car that will not hold a charge or has a wrecked engine is not worth the noise of trying to start it.</p>' },
-        { h: 'Avoiding Noisy Mistakes', body: '<p>Engines are loud, and a failed or repeated start attempt draws zombies. Pick your vehicle deliberately, attempt the start when the area is clear, and be ready to either drive off immediately or abandon the attempt.</p>' }
-      ]
+        { h: 'Why Vehicles Change The Whole Run', body: '<p>New players treat cars as optional. Experienced survivors treat mobility as insurance. A working car lets you choose your fights, scout safely, haul a generator across the map, and walk away from a base that is no longer worth defending.</p><p>If the helicopter event, a migration wave, or a failed loot run ruins your area, a car lets you leave instead of trying to win a fight you never needed to have.</p>' },
+        { h: 'What Makes A Good Vehicle', list: ['Enough cargo space for real loot runs', 'Decent engine condition', 'Usable tyres', 'Enough fuel to move immediately', 'Windows and doors that are not already ruined', 'Trunk capacity for a generator or base supplies'], body: '<p>Avoid cars boxed in by wrecks, cars surrounded by zombies, cars with terrible engine condition, and cars that would need loud repairs in an unsafe area before they will even move.</p>' },
+        { h: 'Beginner Mistakes', list: ['Starting the engine in a dense area with no planned exit', 'Attracting a crowd with engine noise or an accidental horn', 'Driving too fast through wreck-strewn roads', 'Relying on a single vehicle with no spare parts', 'Forgetting that bad tyres turn an escape into a crash'], body: '<p>Almost every early vehicle disaster is one of these. None of them are bad luck.</p>' },
+        { h: 'Long-Term Survival Value', body: '<p>Cars matter more as the run goes on. Long-distance loot runs, generator transport, spare-part hunting, fuel storage and safe map movement all depend on mobility. A survivor with a working vehicle network has options. A survivor stuck on foot has problems.</p>' }
+      ],
+      related: [
+        { href: '/skills/mechanics', label: 'Mechanics Skill' },
+        { href: '/vehicles/how-to-hotwire-cars', label: 'How To Hotwire Cars' },
+        { href: '/vehicles/fuel-guide', label: 'Fuel Guide' },
+        { href: '/guides/first-week', label: 'Surviving The First Week' }
+      ],
+      sources: ['steamStore', 'pzwiki']
+    },
+    {
+      id: 'how-to-hotwire-cars', name: 'How To Hotwire Cars',
+      intro: 'Hotwiring is one of the biggest mobility upgrades in Project Zomboid. Once you can start cars without keys, every parking lot becomes a possible escape route, loot hauler, or emergency shelter.',
+      heroAlt: 'Project Zomboid vehicle dashboard representing hotwiring and vehicle startup',
+      seo: {
+        title: 'How To Hotwire Cars | Project Zomboid Survival Wiki',
+        description: 'Learn how hotwiring works in Project Zomboid, what skills you need, why Burglar is useful, and how to avoid loud vehicle mistakes.',
+        keywords: ['project zomboid hotwire', 'project zomboid how to hotwire cars', 'project zomboid burglar hotwire']
+      },
+      sections: [
+        { h: 'Hotwiring Is Freedom', body: '<p>The ability to start a car without keys turns the whole map into transport. You stop depending on lucky key spawns and start treating any healthy vehicle as yours.</p>' },
+        { h: 'Requirements', body: '<p>Historically the requirement has been one of two things: the <a href="/occupations/burglar">Burglar</a> occupation, or enough <a href="/skills/mechanics">Mechanics</a> and <a href="/skills/electrical">Electrical</a> skill to hotwire. Until you meet one of those, hunt for car keys — they spawn on corpses, in nearby houses and inside the car itself.</p>', warn: 'Build 42 Warning: exact hotwiring requirements can shift with Build 42 balance changes. Treat skill thresholds as patch-dependent and re-check after major updates.' },
+        { h: 'Why Burglar Is Beginner-Friendly', body: '<p>Burglar is not just a stealth role. It removes the early skill barrier for hotwiring and gives new players vehicle access from minute one. That changes how safely you can scout, loot and relocate before you have invested any points at all.</p>' },
+        { h: 'Safe Hotwiring Checklist', list: ['Clear zombies away from the driver-side door', 'Check the car has fuel', 'Check engine condition', 'Check tyre condition', 'Know your escape direction before you start', 'Do not hotwire while exhausted', 'Do not test the engine beside a large horde'] },
+        { h: 'Common Mistakes', list: ['Finding a great car and forgetting it has no fuel', 'Starting a loud engine in the middle of town', 'Hotwiring while zombies are already pathing to the window', 'Driving off without checking the tyres', 'Crashing because panic made you floor it'] },
+        { h: 'Survivor Tip', tip: 'The best car is not always the fastest car. The best car is the one that starts, has fuel, survives a bad turn, and gets you out before the street fills up.' }
+      ],
+      related: [
+        { href: '/occupations/burglar', label: 'Burglar Occupation' },
+        { href: '/skills/electrical', label: 'Electrical Skill' },
+        { href: '/vehicles/fuel-guide', label: 'Fuel Guide' },
+        { href: '/vehicles/best-vehicles', label: 'Best Vehicles' }
+      ],
+      sources: ['pcgamerHotwire', 'steamStore']
     },
     {
       id: 'best-vehicles', name: 'Best Vehicles',
-      intro: 'There is no single "best" car — there is the best car for the job. Rank vehicles by what your run actually needs.',
+      intro: 'There is no single best car. The best vehicle depends on what you need today — and a flashy car with no fuel and ruined tyres is just a coffin with windows.',
+      heroAlt: 'A row of parked Project Zomboid vehicles compared for survival use',
+      seo: {
+        title: 'Best Vehicles | Project Zomboid Survival Wiki',
+        description: 'Compare the best vehicle types in Project Zomboid for storage, speed, durability, fuel use, towing, and long-term survival.',
+        keywords: ['project zomboid best vehicles', 'project zomboid best car', 'project zomboid vehicle tier list']
+      },
       sections: [
-        { h: 'Cargo', body: '<p>Large vans and heavy vehicles carry the most. For base relocation, bulk looting and hauling construction materials, cargo capacity beats every other stat. A survivor who moves a lot of supplies should prize a big trunk over a fast engine.</p>' },
-        { h: 'Speed', body: '<p>Sports and lighter cars accelerate and travel faster, which is excellent for outrunning trouble and covering distance. The trade-off is small storage and often worse durability — speed is an escape tool, not a hauler.</p>' },
-        { h: 'Durability', body: '<p>Heavier vehicles shrug off zombie impacts and minor collisions better. A durable car can push through a thin crowd; a fragile one stalls and traps you. For survival, durability often matters more than raw speed.</p>' },
-        { h: 'Fuel Efficiency', body: '<p>Fuel is finite once the pumps stop. An efficient vehicle stretches every can further, which matters enormously on long runs and far-flung loot trips. A thirsty car can become a liability the day fuel gets scarce.</p>' },
-        { h: 'Off-Road Viability', body: '<p>Some vehicles handle rough terrain and forest tracks better than others. For rural bases and wilderness-leaning Build 42 playstyles, an off-road-capable vehicle reaches places a road car cannot.</p>' },
-        { h: 'The Practical Answer', body: '<p>Most long-term survivors settle on a sturdy, roomy vehicle with a healthy engine — durability and cargo over flash. The "best" vehicle is the reliable one you can keep fuelled and repaired, not the fastest one you found.</p>' }
-      ]
+        { h: 'There Is No Single Best Car', body: '<p>A fast car is great until you need to haul a generator. A van is great until you try to thread it through wrecked Louisville streets. Pick the vehicle for the job in front of you, not the one that looks the coolest.</p>' },
+        { h: 'Best For Loot Runs', body: '<p>Use vans, trucks and vehicles with high trunk capacity. They carry tools, food, weapons, spare parts and heavy base supplies in one trip. The weakness: larger vehicles are harder to manoeuvre and dangerous on tight urban roads.</p>' },
+        { h: 'Best For Scouting', body: '<p>Use smaller cars with decent speed and handling. Scouting is about getting in, reading the danger and getting out — you do not need huge storage for an information run. The weakness: small cars survive fewer repeated zombie impacts.</p>' },
+        { h: 'Best For Base Supply Runs', body: '<p>Use cargo vans, pickup trucks, or anything with large storage and enough durability. Generators, planks, metalworking gear and water containers get heavy fast, and a single sturdy hauler beats three nervous trips.</p>' },
+        { h: 'Best For City Driving', body: '<p>Use smaller vehicles. Louisville and dense towns punish wide turns — a bulky vehicle gets trapped between wrecks and zombie clusters exactly when you most need to move.</p>' },
+        { h: 'What To Prioritise', list: ['Engine condition', 'Fuel availability', 'Tyre condition', 'Storage capacity', 'Handling', 'Durability', 'Noise'], body: '<p>Rank candidates in roughly that order. Engine and fuel decide whether the car moves at all; everything else decides how well.</p>' },
+        { h: 'Beginner Mistake', mistake: 'Do not fall in love with a car because it looks cool. A flashy car with no fuel and ruined tyres will get you killed faster than no car at all.' }
+      ],
+      related: [
+        { href: '/vehicles/vehicle-maintenance', label: 'Vehicle Maintenance' },
+        { href: '/vehicles/fuel-guide', label: 'Fuel Guide' },
+        { href: '/skills/mechanics', label: 'Mechanics Skill' },
+        { href: '/maps/louisville', label: 'Louisville Guide' }
+      ],
+      sources: ['steamStore', 'pzwiki']
+    },
+    {
+      id: 'vehicle-maintenance', name: 'Vehicle Maintenance',
+      intro: 'Vehicle maintenance does not feel urgent until the car fails during a horde escape. By then, the lesson is usually permanent.',
+      heroAlt: 'A Project Zomboid garage scene representing vehicle repair and maintenance',
+      seo: {
+        title: 'Vehicle Maintenance Guide | Project Zomboid Survival Wiki',
+        description: 'Learn how to maintain vehicles in Project Zomboid, what parts matter most, and how the Mechanics skill affects long-term survival.',
+        keywords: ['project zomboid mechanics', 'project zomboid vehicle repair', 'project zomboid car maintenance']
+      },
+      sections: [
+        { h: 'Maintenance Is Boring Until It Saves Your Life', body: '<p>A neglected car is a countdown timer. The trip where it finally matters is rarely a calm one — it is the horde escape, the long supply run, the rainy night far from base. Maintenance is how you make sure the timer never runs out at the worst moment.</p>' },
+        { h: 'Parts To Watch', list: ['Engine condition', 'Battery charge', 'Tyre condition', 'Brakes', 'Suspension', 'Windshield and windows', 'Trunk condition'], body: '<p>Engine and tyres are the survival-critical pair. The rest degrade your control and protection, which still gets people killed — just more slowly.</p>' },
+        { h: 'Mechanics XP Strategy', body: '<p>Read <a href="/skills/mechanics">Mechanics</a> skill books when you find them, inspect vehicles regularly, and remove and reinstall parts you can safely handle to build XP. Practise in a cleared area, never beside a horde — a failed part job under pressure is how a routine task becomes a death.</p>' },
+        { h: 'Long-Term Vehicle Setup', list: ['Spare gas cans', 'A spare battery', 'Spare tyres', 'Tools', 'Emergency food and water', 'A backup weapon', 'Medical supplies'], body: '<p>Keep this kit in the trunk of any vehicle you rely on. A car is also a mobile cache, and the day something goes wrong far from base you will be glad it was stocked.</p>' },
+        { h: 'Survivor Tip', tip: 'A survivor with two decent cars is safer than a survivor with one perfect car.' }
+      ],
+      related: [
+        { href: '/skills/mechanics', label: 'Mechanics Skill' },
+        { href: '/skills/electrical', label: 'Electrical Skill' },
+        { href: '/vehicles/best-vehicles', label: 'Best Vehicles' },
+        { href: '/occupations/mechanic', label: 'Mechanic Occupation' }
+      ],
+      sources: ['steamStore', 'pzwiki']
+    },
+    {
+      id: 'fuel-guide', name: 'Fuel Guide',
+      intro: 'Fuel is not just for cars. It supports generators, loot runs, base relocation and long-term survival. Once the power shuts off, fuel access becomes one of the most important map-control problems you have.',
+      heroAlt: 'An abandoned Project Zomboid gas station used for the fuel survival guide',
+      seo: {
+        title: 'Fuel Guide | Project Zomboid Survival Wiki',
+        description: 'Learn how fuel works in Project Zomboid, how to manage gas stations, generators, gas cans, and long-term vehicle survival.',
+        keywords: ['project zomboid fuel', 'project zomboid gas station', 'project zomboid generator fuel']
+      },
+      sections: [
+        { h: 'Fuel Is A Strategic Resource', body: '<p>Treat fuel like ammunition: finite, valuable and worth planning around. Cars, generators, base relocation and far-flung loot runs all draw on the same shrinking pool once the pumps stop working.</p>' },
+        { h: 'Early Fuel Priorities', list: ['Find and keep gas cans', 'Mark nearby gas stations on your mental map', 'Find or move a generator', 'Secure a safe route to a fuel source', 'Avoid wasting fuel on unnecessary trips'] },
+        { h: 'Gas Station Strategy', body: '<p>A gas station near your base is valuable, but it also concentrates risk. If zombies gather around the pumps, clearing the area safely matters more than rushing one more refill. Pump fuel works only while the grid holds — stockpile aggressively before the shutoff.</p>' },
+        { h: 'Generator Connection', body: '<p>Fuel matters even more once a generator is involved. If your base depends on refrigeration or lighting, fuel planning stops being optional and becomes routine survival maintenance — see the <a href="/skills/electrical">Electrical</a> skill for connecting one safely.</p>' },
+        { h: 'Beginner Mistake', mistake: 'Do not drive everywhere just because you can. Every trip spends fuel, creates noise, and risks vehicle damage. Walk the short trips; save the tank for the trips that matter.' }
+      ],
+      related: [
+        { href: '/skills/electrical', label: 'Electrical Skill' },
+        { href: '/vehicles/best-vehicles', label: 'Best Vehicles' },
+        { href: '/guides/surviving-winter', label: 'How To Survive Winter' },
+        { href: '/maps/best-base-locations', label: 'Best Base Locations' }
+      ],
+      sources: ['steamStore', 'pzwiki']
+    },
+    {
+      id: 'towing-guide', name: 'Towing Guide',
+      intro: 'Towing lets you move wrecks, rescue broken cars and bring useful vehicles back to base. It also makes driving slower, louder and harder to control.',
+      heroAlt: 'A Project Zomboid vehicle towing another car along a rural road',
+      seo: {
+        title: 'Towing Guide | Project Zomboid Survival Wiki',
+        description: 'Learn when towing is worth it in Project Zomboid, how to move broken cars, and what mistakes make towing dangerous.',
+        keywords: ['project zomboid towing', 'project zomboid tow car', 'project zomboid move vehicles']
+      },
+      sections: [
+        { h: 'Towing Is Useful, But Not Always Safe', body: '<p>Towing is a genuine tool — it clears roads, rescues stranded vehicles and lets you build a fleet. But a towed load turns every handling weakness into a bigger one. Plan towing trips; never improvise them under pressure.</p>' },
+        { h: 'Good Uses For Towing', list: ['Clearing a blocked road near your base', 'Moving a good car that has no fuel or a dead battery', 'Bringing a repair project home', 'Removing wrecks from access points', 'Moving storage vehicles into a fenced compound'] },
+        { h: 'Bad Uses For Towing', list: ['Towing through dense urban streets', 'Towing while tired or panicked', 'Towing without scouting the route first', 'Towing through unknown zombie density', 'Towing during helicopter-event chaos'] },
+        { h: 'Survivor Tip', tip: 'Scout the route first. Towing turns every mistake into a slower mistake — and slow mistakes are the ones zombies catch up to.' }
+      ],
+      related: [
+        { href: '/vehicles/vehicle-maintenance', label: 'Vehicle Maintenance' },
+        { href: '/skills/mechanics', label: 'Mechanics Skill' },
+        { href: '/guides/helicopter-event', label: 'Helicopter Event Guide' },
+        { href: '/maps/best-base-locations', label: 'Best Base Locations' }
+      ],
+      sources: ['steamStore', 'pzwiki']
     }
   ],
 
@@ -931,29 +1126,127 @@ window.WikiData = {
   /* ---------------------------------------------------------- */
   mods: [
     {
-      id: 'best-essential-mods', name: 'Best Essential Mods',
-      intro: 'Project Zomboid has an enormous, long-lived modding community. These are the categories and well-known mods survivors most often reach for. Always confirm a mod supports your current build before installing — Build 42 broke compatibility for many older mods.',
+      id: 'overview', name: 'Mods Overview',
+      intro: 'Project Zomboid has a huge modding scene. Some mods quietly improve quality of life. Others rewrite the entire balance of survival. The dangerous part is not installing mods — it is installing twenty of them without understanding what they change.',
+      heroAlt: 'A Project Zomboid Workshop mod browser screen representing the modding guide',
+      seo: {
+        title: 'Mods Guide | Project Zomboid Survival Wiki',
+        description: 'Learn how Project Zomboid mods change gameplay, what types of mods to install, and how to avoid unstable mod setups.',
+        keywords: ['project zomboid mods', 'project zomboid workshop', 'project zomboid mod guide']
+      },
       sections: [
-        { h: 'A Note On Compatibility', body: '<p>Mods are community-made and version-sensitive. A mod built for an older build may not work, or may behave unpredictably, on Build 42. Check the mod page, read recent comments, and back up your save before adding mods to an existing run.</p>' }
+        { h: 'Mods Can Improve The Game Or Break The Run', body: '<p>Mods range from tiny convenience tweaks to total overhauls of how survival works. Used carefully they extend the game for hundreds of hours. Used carelessly they turn a stable save into an unexplainable mess of conflicts.</p>' },
+        { h: 'Mod Categories', list: ['Quality of life', 'UI improvements', 'Vehicle expansions', 'Weapon packs', 'Clothing and cosmetics', 'Map expansions', 'Server administration', 'Immersion and roleplay', 'Hardcore survival changes'] },
+        { h: 'Recommended Rule', body: '<p>Start with fewer mods than you think you need. Add more only after testing. A lean, understood mod list beats a huge, mysterious one every single time.</p>' },
+        { h: 'Beginner Mistake', mistake: 'Do not build your first serious run around a giant mod pack. If something breaks, you will have no idea which mod caused it — and the save you lose will be the one you cared about.' }
+      ],
+      related: [
+        { href: '/mods/best-essential-mods', label: 'Best Essential Mods' },
+        { href: '/mods/mod-load-order', label: 'Mod Load Order' },
+        { href: '/mods/server-mods', label: 'Server Mods' },
+        { href: '/multiplayer/best-server-settings', label: 'Best Server Settings' }
+      ],
+      sources: ['steamStore', 'indieStoneForums']
+    },
+    {
+      id: 'best-essential-mods', name: 'Best Essential Mods',
+      intro: 'An essential mod should make the game easier to read, smoother to manage, or richer — without completely destroying survival balance.',
+      heroAlt: 'A Project Zomboid Steam Workshop mod collection screen',
+      seo: {
+        title: 'Best Essential Mods | Project Zomboid Survival Wiki',
+        description: 'A practical list of essential Project Zomboid mods for quality of life, immersion, vehicles, UI, and smoother survival runs.',
+        keywords: ['project zomboid best mods', 'project zomboid essential mods', 'project zomboid workshop mods']
+      },
+      sections: [
+        { h: 'What Counts As Essential?', body: '<p>"Essential" does not mean "powerful." It means the mod improves clarity, comfort or depth without quietly removing the tension that makes survival matter. A mod that makes you safer is not essential — it is a difficulty setting in disguise.</p>' },
+        { h: 'Quality Of Life Mods', body: '<p>Use these for better inventory readability, a cleaner UI, faster repetitive actions and clearer item information. QoL mods are the safest category because they change how you <em>see</em> the game, not how hard it is.</p>' },
+        { h: 'Vehicle Mods', body: '<p>Use these for more vehicle variety, better long-term car collecting and stronger roleplay servers. They mostly add flavour and choice rather than power, which keeps them low-risk.</p>' },
+        { h: 'Immersion Mods', body: '<p>Use these for sitting and lying animations, clothing variety, environmental detail and a stronger survivor fantasy. They deepen the world without touching combat balance.</p>' },
+        { h: 'Weapon Mods', body: '<p>Use weapon packs carefully. A big arsenal is fun, but if loot rates are not balanced alongside it, weapon mods quietly make the game far too easy. Treat them as a balance change, not a cosmetic one.</p>' },
+        { h: 'Important Warning', warn: 'Build 42 Warning: never treat a mod list as permanently correct. Mods update, break, disappear and conflict. Always check each mod’s Workshop page, last update date and compatibility notes before trusting it on a real save.' }
       ],
       modList: [
-        { name: "Brita's Weapons", why: 'A massive expansion of firearms and melee weapons, hugely popular with players who want a far deeper combat arsenal.' },
-        { name: 'Common Sense', why: 'Adds intuitive interactions the base game lacks — sensible little "why can’t I just do that?" actions that make the world feel more logical.' },
-        { name: 'Authentic Z', why: 'Expands clothing, cosmetics and character customisation for far more visual variety.' },
-        { name: 'True Actions', why: 'Adds immersive actions and animations such as sitting and lying down, deepening roleplay and base life.' },
-        { name: "Filibuster Rhymes' Used Cars", why: 'Greatly expands the variety of vehicles spawning in the world, making car hunting more interesting.' }
-      ]
+        { name: "Brita's Weapons", why: 'A massive expansion of firearms and melee weapons, popular with players who want a far deeper combat arsenal. High balance impact — pair with tuned loot settings.' },
+        { name: 'Common Sense', why: 'Adds intuitive interactions the base game lacks — sensible little actions that make the world feel more logical. Low balance impact.' },
+        { name: 'Authentic Z', why: 'Expands clothing, cosmetics and character customisation for far more visual variety. Low balance impact.' },
+        { name: 'True Actions', why: 'Adds immersive actions and animations such as sitting and lying down. Low balance impact, strong for roleplay.' },
+        { name: "Filibuster Rhymes' Used Cars", why: 'Greatly expands the variety of vehicles spawning in the world, making car hunting more interesting. Low-to-medium balance impact.' }
+      ],
+      modNote: 'Mod names are listed as widely-known community examples. Always verify the current Workshop page, last-updated date, build compatibility and single-player/multiplayer suitability before installing.',
+      related: [
+        { href: '/mods/overview', label: 'Mods Overview' },
+        { href: '/mods/mod-load-order', label: 'Mod Load Order' },
+        { href: '/mods/best-multiplayer-mods', label: 'Best Multiplayer Mods' }
+      ],
+      sources: ['steamStore', 'indieStoneForums', 'steamScreenshots']
     },
     {
       id: 'best-multiplayer-mods', name: 'Best Multiplayer Mods',
-      intro: 'Multiplayer servers live and die on their mod lists. The right mods smooth the experience, protect players from griefers and keep performance stable as a server grows.',
+      intro: 'A mod that works fine alone can become a server problem when ten people use it. Multiplayer mods should be stable, understandable, and easy to explain to new players.',
+      heroAlt: 'A Project Zomboid multiplayer server mod configuration screen',
+      seo: {
+        title: 'Best Multiplayer Mods | Project Zomboid Survival Wiki',
+        description: 'Recommended Project Zomboid multiplayer mods for quality of life, roleplay, server management, vehicles, and balanced co-op survival.',
+        keywords: ['project zomboid multiplayer mods', 'project zomboid server mods', 'project zomboid co-op mods']
+      },
       sections: [
-        { h: 'Quality-Of-Life Mods', body: '<p>QoL mods reduce friction — better inventory handling, clearer UI, smoother interactions. On a server where many people share a world, these small improvements add up to a much less frustrating experience for everyone.</p>' },
-        { h: 'Anti-Grief Mods', body: '<p>Anti-grief mods add base protection, claim systems and safe zones so players cannot trivially destroy each other’s work. For any server that wants a stable community, this category is close to mandatory.</p>' },
-        { h: 'Server Optimisation', body: '<p>Performance and optimisation mods help a server stay stable as player count and built structures grow. A laggy server loses players fast, so admins prioritise this category heavily.</p>' },
-        { h: 'Immersion Mods', body: '<p>Immersion mods — expanded interactions, roleplay tools, world detail — give a community shared things to do beyond raw survival. They are what turn a server into a place people return to.</p>' },
-        { h: 'Keep The List Lean', body: '<p>Every mod is a potential compatibility and performance cost. Successful servers curate a focused, tested mod list rather than stacking everything available. More mods is not better; the right mods is better.</p>' }
-      ]
+        { h: 'Multiplayer Mods Need More Discipline', body: '<p>Single-player modding only risks your own save. Server modding risks everyone’s. Every mod you add is something each player must download, keep updated and occasionally troubleshoot — so the bar for "worth it" is much higher.</p>' },
+        { h: 'Good Multiplayer Mod Types', list: ['Admin tools', 'Map tools', 'Safehouse and claim improvements', 'Better vehicle variety', 'Roleplay clothing', 'Quality-of-life interface improvements', 'Server event tools'] },
+        { h: 'Risky Multiplayer Mod Types', list: ['Huge weapon packs with unbalanced loot', 'Mods that change core professions or traits', 'Mods with outdated dependencies', 'Mods that add heavy map changes mid-save', 'Mods that require every player to manually troubleshoot files'] },
+        { h: 'Server Owner Rule', body: '<p>Before adding a mod to a live server: test it on a private save, check the comments and update date, read the dependency requirements, verify multiplayer compatibility, and back up the server. Skipping any of these is how a community loses a week of progress.</p>' }
+      ],
+      modNote: 'Treat every multiplayer mod recommendation as a starting point. Confirm the Workshop page, last-updated date and current-build compatibility before deploying to a live server.',
+      related: [
+        { href: '/mods/best-essential-mods', label: 'Best Essential Mods' },
+        { href: '/mods/server-mods', label: 'Server Mods' },
+        { href: '/multiplayer/best-server-settings', label: 'Best Server Settings' },
+        { href: '/multiplayer/server-admin-tips', label: 'Server Admin Tips' }
+      ],
+      sources: ['steamStore', 'indieStoneForums']
+    },
+    {
+      id: 'mod-load-order', name: 'Mod Load Order',
+      intro: 'Project Zomboid modding is powerful, but load order and dependencies matter. When mods touch the same systems, one can override or break another.',
+      heroAlt: 'A Project Zomboid mod load order list screen',
+      seo: {
+        title: 'Mod Load Order Guide | Project Zomboid Survival Wiki',
+        description: 'Learn how to think about Project Zomboid mod load order, dependencies, testing, backups, and avoiding broken saves.',
+        keywords: ['project zomboid mod load order', 'project zomboid mod conflicts', 'project zomboid mod dependencies']
+      },
+      sections: [
+        { h: 'Load Order Is Damage Control', body: '<p>Load order will not make a bad mod list good. What it does is decide which mod wins when two of them touch the same system — and getting that wrong is how saves quietly corrupt.</p>' },
+        { h: 'Practical Rules', list: ['Install dependencies before the mods that need them', 'Add big system-changing mods slowly, one at a time', 'Avoid adding map mods to a world that is already explored', 'Keep written notes on what you changed and when', 'Test thoroughly before committing to a long-term save', 'Back up saves before any major mod change'] },
+        { h: 'Beginner Mistake', mistake: 'Adding twenty mods at once feels efficient. It is not. It just guarantees that when something breaks, troubleshooting will be impossible.' }
+      ],
+      related: [
+        { href: '/mods/overview', label: 'Mods Overview' },
+        { href: '/mods/best-multiplayer-mods', label: 'Best Multiplayer Mods' },
+        { href: '/mods/server-mods', label: 'Server Mods' }
+      ],
+      sources: ['steamStore', 'indieStoneForums']
+    },
+    {
+      id: 'server-mods', name: 'Server Mods',
+      intro: 'Server-side mods are the ones admins run to manage a community: moderation tools, claim systems, logging and event tools. They are less about gameplay flavour and more about keeping a shared world stable and fair.',
+      heroAlt: 'A Project Zomboid dedicated server mod administration screen',
+      seo: {
+        title: 'Server Mods Guide | Project Zomboid Survival Wiki',
+        description: 'Learn what server-side mods do in Project Zomboid, which categories are worth running, and how to install them without breaking a live server.',
+        keywords: ['project zomboid server mods', 'project zomboid admin mods', 'project zomboid dedicated server mods']
+      },
+      sections: [
+        { h: 'What Server Mods Do', body: '<p>Where gameplay mods change what players experience, server mods change what admins can manage. They add the tooling a healthy community needs — moderation, base protection, logging and quality-of-life systems that scale with player count.</p>' },
+        { h: 'Categories Worth Running', list: ['Admin and moderation tools', 'Safehouse and claim protection', 'Action and chat logging for grief investigation', 'Performance and optimisation helpers', 'Event and announcement tools'], body: '<p>These categories pay for themselves the first time a griefing dispute needs evidence or a base claim needs enforcing.</p>' },
+        { h: 'Installing Server-Side Mods Safely', body: '<p>Test every server mod on a private save first, confirm it matches your current build, read its dependency list, and back up the server before deploying. Announce changes to players so nobody is surprised by new behaviour.</p>' },
+        { h: 'Beginner Mistake', mistake: 'Do not add server mods to a live, populated server without testing. A broken admin mod can take the whole world offline — and the people on it will remember.' }
+      ],
+      related: [
+        { href: '/mods/best-multiplayer-mods', label: 'Best Multiplayer Mods' },
+        { href: '/mods/mod-load-order', label: 'Mod Load Order' },
+        { href: '/multiplayer/server-admin-tips', label: 'Server Admin Tips' },
+        { href: '/multiplayer/best-server-settings', label: 'Best Server Settings' }
+      ],
+      sources: ['steamStore', 'indieStoneForums']
     }
   ],
 
@@ -962,25 +1255,141 @@ window.WikiData = {
   /* ---------------------------------------------------------- */
   multiplayer: [
     {
-      id: 'best-server-settings', name: 'Best Server Settings',
-      intro: 'Server settings define the entire feel of a multiplayer world. There is no universally "best" configuration — only the right one for the community you want.',
+      id: 'overview', name: 'Multiplayer Overview',
+      intro: 'Solo Project Zomboid is about discipline. Multiplayer is about coordination. The zombies are still dangerous, but other players create the real complexity: shared loot, noisy plans, base trust, vehicles and different risk tolerance.',
+      heroAlt: 'A group of Project Zomboid survivors representing the multiplayer guide',
+      seo: {
+        title: 'Multiplayer Guide | Project Zomboid Survival Wiki',
+        description: 'Learn how Project Zomboid multiplayer changes survival, base building, loot, vehicles, PvP, co-op roles, and server settings.',
+        keywords: ['project zomboid multiplayer', 'project zomboid co-op', 'project zomboid server guide']
+      },
       sections: [
-        { h: 'Beginner-Friendly Settings', body: '<p>For a welcoming server, lower zombie population, enable multi-hit, ease infection rules toward bite-only, and keep loot reasonably generous. The goal is a world where new players can learn without a single mistake ending their run.</p>' },
-        { h: 'Hardcore Settings', body: '<p>For a survival-focused community, raise zombie population, tighten infection, reduce loot abundance and consider sprinter or tougher zombie options. Hardcore servers attract players who want every decision to carry weight.</p>' },
-        { h: 'Loot Balance', body: '<p>Loot rarity is one of the most impactful settings. Too generous and the game has no tension; too scarce and new players bounce off. Most healthy servers sit slightly below default abundance and tune from there based on feedback.</p>' },
-        { h: 'Respawn Settings', body: '<p>Zombie respawn rate decides whether cleared areas stay clear. Disabling or heavily reducing respawns rewards methodical clearing; leaving it on keeps the world permanently dangerous. Match this to your community’s appetite.</p>' },
-        { h: 'PvP Balance', body: '<p>Decide early and clearly whether the server is PvP, PvE or zoned. Safe zones, base protection and clear rules prevent the player conflict that quietly kills server populations. Ambiguity here is what causes the worst drama.</p>' }
-      ]
+        { h: 'Multiplayer Changes The Game Completely', body: '<p>A group can survive far longer than one player — but only if it behaves like a group. More people means more noise, more food eaten, more mistakes, and more chances that someone opens the wrong door at the wrong time.</p>' },
+        { h: 'What Multiplayer Adds', list: ['Shared base logistics', 'Group combat', 'Role specialisation', 'Loot disputes', 'Server rules', 'PvP risk', 'Safehouse politics', 'Mod compatibility problems'] },
+        { h: 'Good Group Roles', list: ['Driver / scout', 'Carpenter / base builder', 'Mechanic', 'Medic', 'Cook / farmer', 'Combat escort', 'Loot organiser'] },
+        { h: 'Beginner Mistake', mistake: 'Do not let everyone loot randomly. A group without roles becomes five people filling bags with junk while nobody brings tools, fuel or medical supplies.' }
+      ],
+      related: [
+        { href: '/multiplayer/co-op-survival', label: 'Co-op Survival Guide' },
+        { href: '/multiplayer/best-server-settings', label: 'Best Server Settings' },
+        { href: '/mods/best-multiplayer-mods', label: 'Best Multiplayer Mods' },
+        { href: '/guides/how-infection-works', label: 'How Infection Works' }
+      ],
+      sources: ['steamStore', 'indieStoneForums']
+    },
+    {
+      id: 'best-server-settings', name: 'Best Server Settings',
+      intro: 'A Project Zomboid server is not just hosted gameplay. The settings decide whether the world feels like a tense survival story, casual co-op, PvP chaos, or a roleplay colony.',
+      heroAlt: 'A Project Zomboid server settings configuration screen',
+      seo: {
+        title: 'Best Server Settings | Project Zomboid Survival Wiki',
+        description: 'Recommended Project Zomboid server settings for beginner co-op, hardcore survival, roleplay, PvP, loot balance, and zombie population.',
+        keywords: ['project zomboid server settings', 'project zomboid best server settings', 'project zomboid co-op settings']
+      },
+      sections: [
+        { h: 'Settings Decide The Server’s Personality', body: '<p>Before touching a single slider, decide what kind of story you want the server to create. Every setting below should serve that decision — a tense survival epic and a casual hangout server need almost opposite configurations.</p>' },
+        { h: 'Beginner-Friendly Co-op Settings', list: ['Lower initial zombie population', 'Slower population peak', 'More forgiving loot', 'Infection settings agreed by the group', 'Multi-hit enabled if players are new', 'Slightly improved vehicle condition', 'Safehouse protection enabled'] },
+        { h: 'Hardcore Survival Settings', list: ['Higher zombie population', 'Rare loot', 'Longer respawn pressure', 'Harsher weather', 'Limited safehouse abuse', 'Stricter death consequences'] },
+        { h: 'Roleplay Server Settings', list: ['Safehouse systems enabled', 'PvP controlled by rules', 'Loot respawn carefully tuned', 'Profession diversity encouraged', 'Admin event tools available', 'Slower progression'] },
+        { h: 'PvP Server Settings', list: ['Clear, written PvP rules', 'Safehouse protection limits', 'Anti-grief rules', 'Loot scarcity tuned carefully', 'Balanced vehicle access', 'Admin logging and moderation tools'] },
+        { h: 'Settings That Need Care', list: ['Loot respawn', 'Zombie respawn', 'Safehouse claiming', 'Fire spread', 'PvP damage', 'Infection mortality', 'Day length', 'Sleep requirements', 'Car spawn condition'], body: '<p>These are the settings that quietly reshape the whole experience. Change them deliberately, one at a time, and tell your players when you do.</p>' },
+        { h: 'Survivor Tip', tip: 'Do not copy random server settings blindly. Decide what kind of story you want the server to create, then tune the settings around that.' }
+      ],
+      related: [
+        { href: '/multiplayer/server-admin-tips', label: 'Server Admin Tips' },
+        { href: '/multiplayer/co-op-survival', label: 'Co-op Survival Guide' },
+        { href: '/mods/server-mods', label: 'Server Mods' }
+      ],
+      sources: ['steamStore', 'indieStoneForums']
+    },
+    {
+      id: 'co-op-survival', name: 'Co-op Survival Guide',
+      intro: 'A group can survive longer than one player, but only if the group is organised. More people means more noise, more food consumed, more mistakes, and more chances someone opens the wrong door.',
+      heroAlt: 'A Project Zomboid co-op survivor group defending a shared safehouse',
+      seo: {
+        title: 'Co-op Survival Guide | Project Zomboid Survival Wiki',
+        description: 'Learn how to survive Project Zomboid co-op with group roles, base organization, shared loot rules, and safer combat habits.',
+        keywords: ['project zomboid co-op guide', 'project zomboid multiplayer survival', 'project zomboid group base']
+      },
+      sections: [
+        { h: 'Co-op Survival Is Logistics', body: '<p>Co-op does not make survival easier by default — it makes it bigger. A coordinated group is far stronger than a solo survivor; an uncoordinated one is just a louder, hungrier target.</p>' },
+        { h: 'Assign Roles Early', list: ['Scout: checks new areas before everyone enters', 'Driver: manages vehicles and escape routes', 'Builder: handles carpentry and base work', 'Mechanic: maintains cars and generators', 'Quartermaster: organises loot', 'Farmer / Cook: handles food sustainability', 'Medic: manages first-aid supplies'] },
+        { h: 'Shared Base Rules', list: ['Where tools go', 'Where weapons go', 'Who drives which vehicles', 'When it is acceptable to use guns', 'How to mark cleared buildings', 'Where emergency bags are stored'], body: '<p>Agree these out loud, early. Most base drama is not malice — it is two people who assumed different rules.</p>' },
+        { h: 'Group Combat Rules', list: ['Do not swing through each other', 'Call out exhaustion', 'Avoid indoor group fights', 'Retreat before panic spreads', 'Do not fire guns without agreement', 'Keep one escape route open'] },
+        { h: 'Beginner Mistake', mistake: 'The biggest multiplayer killer is confidence. Three players see ten zombies and assume it is safe. Then one misses, one trips, one panics, and suddenly the group is arguing over who got bitten first.' }
+      ],
+      related: [
+        { href: '/multiplayer/overview', label: 'Multiplayer Overview' },
+        { href: '/multiplayer/multiplayer-etiquette', label: 'Multiplayer Etiquette' },
+        { href: '/guides/first-week', label: 'Surviving The First Week' },
+        { href: '/maps/best-base-locations', label: 'Best Base Locations' }
+      ],
+      sources: ['steamStore', 'indieStoneForums']
+    },
+    {
+      id: 'pvp-guide', name: 'PvP Guide',
+      intro: 'Project Zomboid PvP is less about clean duels and more about information, positioning, sound and preparation. The person who sees first usually controls the fight.',
+      heroAlt: 'A tense Project Zomboid PvP standoff between survivors',
+      seo: {
+        title: 'PvP Guide | Project Zomboid Survival Wiki',
+        description: 'Learn the basics of Project Zomboid PvP, including risk management, safehouses, ambushes, vehicle danger, and server etiquette.',
+        keywords: ['project zomboid pvp', 'project zomboid multiplayer pvp', 'project zomboid pvp guide']
+      },
+      sections: [
+        { h: 'PvP Is Not Fair, And That Is The Point', body: '<p>Do not expect honourable showdowns. Knox PvP rewards the survivor who scouted, who heard the footsteps first, who chose the ground. If a fight feels fair, you probably walked into someone else’s ambush.</p>' },
+        { h: 'PvP Survival Principles', list: ['Never reveal your main base casually', 'Avoid predictable routes', 'Do not drive directly home after a conflict', 'Keep backup supplies away from your main base', 'Assume gunshots attract both players and zombies', 'Use darkness, buildings and trees deliberately'] },
+        { h: 'Safehouse Thinking', body: '<p>A safehouse is not safe if everyone knows where it is. Real security comes from secrecy, escape routes, storage discipline and not leaving an obvious vehicle trail leading to your door.</p>' },
+        { h: 'Beginner Mistake', mistake: 'Do not treat PvP like a shooter. A loud victory can still kill you when the zombies the gunfire summoned arrive a minute later.' }
+      ],
+      related: [
+        { href: '/multiplayer/best-server-settings', label: 'Best Server Settings' },
+        { href: '/multiplayer/multiplayer-etiquette', label: 'Multiplayer Etiquette' },
+        { href: '/multiplayer/server-admin-tips', label: 'Server Admin Tips' }
+      ],
+      sources: ['steamStore', 'indieStoneForums']
+    },
+    {
+      id: 'server-admin-tips', name: 'Server Admin Tips',
+      intro: 'A good admin does not just ban griefers. A good admin prevents confusion before it becomes drama.',
+      heroAlt: 'A Project Zomboid dedicated server administration console',
+      seo: {
+        title: 'Server Admin Tips | Project Zomboid Survival Wiki',
+        description: 'Practical Project Zomboid server admin tips for backups, rules, mods, grief prevention, loot settings, and player management.',
+        keywords: ['project zomboid server admin', 'project zomboid dedicated server', 'project zomboid server tips']
+      },
+      sections: [
+        { h: 'Admin Work Is Prevention', body: '<p>Most server drama is preventable. Clear rules, regular backups and tested changes stop the arguments that otherwise eat your evenings. Reactive moderation is a last resort, not a strategy.</p>' },
+        { h: 'Admin Checklist', list: ['Write server rules clearly', 'Back up saves regularly', 'Test mods before adding them', 'Announce setting changes', 'Define PvP rules', 'Define safehouse rules', 'Define vehicle ownership rules', 'Define loot respawn expectations', 'Have a plan for rollback situations'] },
+        { h: 'Common Admin Problems', list: ['Adding mods mid-save without testing', 'Unclear PvP expectations', 'Unlimited loot respawn ruining progression', 'No backup before a major change', 'Players not knowing what counts as griefing'] },
+        { h: 'Server Rule Examples', list: ['No destroying claimed safehouses', 'No stealing from claimed safehouse containers', 'PvP only outside protected zones', 'Do not lure hordes into bases intentionally', 'Do not block public roads with wrecks unless it is an approved event', 'Vehicle ownership must be respected inside a claimed safehouse'] }
+      ],
+      related: [
+        { href: '/multiplayer/best-server-settings', label: 'Best Server Settings' },
+        { href: '/mods/server-mods', label: 'Server Mods' },
+        { href: '/mods/mod-load-order', label: 'Mod Load Order' }
+      ],
+      sources: ['steamStore', 'indieStoneForums']
     },
     {
       id: 'multiplayer-etiquette', name: 'Multiplayer Etiquette',
-      intro: 'Most multiplayer servers do not collapse because of zombies. They collapse because of how players treat each other.',
+      intro: 'Most multiplayer problems start with expectations, not malice. Players fight because nobody agreed on loot, vehicles, guns or base rules.',
+      heroAlt: 'Project Zomboid survivors sharing a safehouse, representing multiplayer etiquette',
+      seo: {
+        title: 'Multiplayer Etiquette | Project Zomboid Survival Wiki',
+        description: 'Learn basic Project Zomboid multiplayer etiquette for loot sharing, vehicles, safehouses, voice chat, PvP, and group survival.',
+        keywords: ['project zomboid multiplayer etiquette', 'project zomboid server rules', 'project zomboid co-op rules']
+      },
       sections: [
-        { h: 'Base Trust', body: '<p>Entering another player’s base uninvited — even just to look — destroys trust fast. Respect claimed territory, ask before visiting, and never treat someone’s base as a free loot source. Trust is the rarest resource on any server.</p>' },
-        { h: 'Vehicle Ownership', body: '<p>A car someone has fuelled, repaired and parked is theirs. Taking it is theft, full stop, and it is one of the most common causes of server conflict. If transport is shared, agree the rules openly and in advance.</p>' },
-        { h: 'Loot Etiquette', body: '<p>When looting alongside others, do not strip every container before teammates arrive. Share fairly, especially scarce medical supplies and ammunition. A reputation as a loot hog follows you across a whole server.</p>' },
-        { h: 'Grief Prevention', body: '<p>Griefing — destroying bases, killing new players for no reason, hoarding to deny others — kills server populations. Good communities self-police it, support new players, and make clear that griefers are not welcome. Be the player others are glad to see online.</p>' }
-      ]
+        { h: 'The Zombies Are Not The Only Threat', body: '<p>On a server, the most common run-ending threat is not a horde — it is a misunderstanding. Someone took the wrong car, emptied the wrong container, or fired a gun nobody agreed to fire.</p>' },
+        { h: 'Basic Etiquette', list: ['Ask before taking rare tools', 'Do not move someone else’s car without telling them', 'Do not fire guns near base without warning', 'Label containers clearly', 'Replace fuel if you use shared vehicles', 'Do not lead hordes home', 'Announce bites honestly', 'Respect safehouse boundaries'] },
+        { h: 'Group Survival Rule', body: '<p>If your action creates risk for the group, communicate before doing it. That single habit prevents the large majority of server conflict.</p>' }
+      ],
+      related: [
+        { href: '/multiplayer/co-op-survival', label: 'Co-op Survival Guide' },
+        { href: '/multiplayer/overview', label: 'Multiplayer Overview' },
+        { href: '/multiplayer/server-admin-tips', label: 'Server Admin Tips' }
+      ],
+      sources: ['steamStore', 'indieStoneForums']
     }
   ],
 
@@ -1053,7 +1462,7 @@ window.WikiData = {
         <h3>Where to read next</h3>
         <p>Start with the <a href="/guides/first-day-survival">First Day Survival Guide</a>, then <a href="/guides/how-infection-works">How Infection Actually Works</a>, then <a href="/guides/first-week">How To Survive The First Week</a>. After that, the <a href="/traits">Traits</a> and <a href="/occupations">Occupations</a> sections will help you build a stronger survivor next time.</p>
       `
-    },
+    }
   },
 
   /* ---------------------------------------------------------- */

@@ -75,13 +75,122 @@
   }
 
   /* -------------------- section renderers -------------------- */
+  function calloutBlock(kind, label, text) {
+    return `<div class="callout ${kind}"><span class="callout-label">${esc(label)}</span>${esc(text)}</div>`;
+  }
+
   function sectionsHTML(sections) {
     return (sections || []).map((s) => {
       const list = s.list && s.list.length
         ? `<ul>${s.list.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>`
         : '';
-      return `<h3>${esc(s.h)}</h3>${list}${s.body || ''}`;
+      let extra = '';
+      if (s.warn) extra += calloutBlock('build42', 'Build 42 Warning', s.warn);
+      if (s.tip) extra += calloutBlock('tip', 'Survivor Tip', s.tip);
+      if (s.mistake) extra += calloutBlock('mistake', 'Beginner Mistake', s.mistake);
+      return `<h3>${esc(s.h)}</h3>${list}${s.body || ''}${extra}`;
     }).join('');
+  }
+
+  /* -------------------- hero image -------------------- */
+  function heroBlock(section, entity) {
+    const hero = window.WikiMeta && window.WikiMeta.heroFor(section, entity);
+    if (!hero) return '';
+    return `<figure class="page-hero">
+      <img src="${esc(hero.src)}" alt="${esc(hero.alt)}" width="1200" height="500"
+        onerror="this.closest('.page-hero').classList.add('hero-missing');this.remove();">
+      <span class="hero-fallback" aria-hidden="true">${esc(entity.name || entity.title || '')}</span>
+    </figure>`;
+  }
+
+  /* -------------------- sources & update notes -------------------- */
+  function resolveSources(list) {
+    return (list || []).map((s) => (typeof s === 'string' ? D.sourceRegistry[s] : s)).filter(Boolean);
+  }
+
+  function sourceNotes(entity) {
+    const site = D.site;
+    const last = (entity && entity.lastUpdated) || site.lastUpdated;
+    const build = (entity && entity.buildStatus) || site.buildStatus;
+    const srcs = resolveSources(entity && entity.sources);
+    const fallback = srcs.length ? srcs : resolveSources(['steamStore', 'officialBlog', 'pzwiki']);
+    const links = `<ul class="src-list">${fallback.map((s) =>
+      `<li><a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.label)}</a><span> — ${esc(s.note)}</span></li>`
+    ).join('')}</ul>`;
+    const modNote = entity && entity.modNote
+      ? `<p class="src-uncertain">${esc(entity.modNote)}</p>` : '';
+    return `<aside class="source-notes" aria-label="Sources and update notes">
+      <div class="src-head">Sources &amp; Update Notes</div>
+      <div class="src-meta">
+        <span><strong>Last updated:</strong> ${esc(last)}</span>
+        <span><strong>Build focus:</strong> ${esc(build)}</span>
+      </div>
+      <div class="src-checked"><strong>Sources checked:</strong></div>
+      ${links}
+      ${modNote}
+      <p class="src-uncertain">Note: Build 42 systems are still changing between unstable patches. Treat exact numbers, recipes and requirements as patch-dependent.</p>
+    </aside>`;
+  }
+
+  /* -------------------- related pages -------------------- */
+  function relatedBlock(entity) {
+    const rel = (entity && entity.related) || [];
+    if (!rel.length) return '';
+    return `<nav class="related" aria-label="Related pages">
+      <h3>Related Pages</h3>
+      <div class="related-grid">
+        ${rel.map((r) => `<a class="related-card" href="${esc(r.href)}">${esc(r.label)}</a>`).join('')}
+      </div>
+    </nav>`;
+  }
+
+  /* -------------------- dynamic SEO (client-side) -------------------- */
+  function setMeta(attr, key, value) {
+    let el = document.head && document.head.querySelector(`meta[${attr}="${key}"]`);
+    if (!el) {
+      el = document.createElement('meta');
+      el.setAttribute(attr, key);
+      if (document.head) document.head.appendChild(el);
+    }
+    el.setAttribute('content', value || '');
+  }
+
+  function setLink(rel, href) {
+    let el = document.head && document.head.querySelector(`link[rel="${rel}"]`);
+    if (!el) {
+      el = document.createElement('link');
+      el.setAttribute('rel', rel);
+      if (document.head) document.head.appendChild(el);
+    }
+    el.setAttribute('href', href || '');
+  }
+
+  function applySeo(route) {
+    if (!window.WikiMeta || !document.head) return;
+    const seo = window.WikiMeta.seoFor(route);
+    try {
+      document.title = seo.title;
+      setMeta('name', 'description', seo.description);
+      setMeta('name', 'keywords', (seo.keywords || []).join(', '));
+      setLink('canonical', seo.canonical);
+      setMeta('property', 'og:title', seo.ogTitle);
+      setMeta('property', 'og:description', seo.ogDescription);
+      setMeta('property', 'og:url', seo.canonical);
+      setMeta('property', 'og:image', seo.ogImage);
+      setMeta('property', 'og:type', seo.ogType);
+      setMeta('name', 'twitter:card', 'summary_large_image');
+      setMeta('name', 'twitter:title', seo.ogTitle);
+      setMeta('name', 'twitter:description', seo.ogDescription);
+      setMeta('name', 'twitter:image', seo.ogImage);
+      let ld = document.getElementById('jsonld');
+      if (!ld) {
+        ld = document.createElement('script');
+        ld.type = 'application/ld+json';
+        ld.id = 'jsonld';
+        document.head.appendChild(ld);
+      }
+      ld.textContent = JSON.stringify(window.WikiMeta.jsonLdFor(route));
+    } catch (e) { /* non-fatal */ }
   }
 
   /* -------------------- left nav -------------------- */
@@ -225,6 +334,7 @@
     else if (route.startsWith('/multiplayer/')) renderMultiplayerDetail(route.slice(13));
     else render404(route);
 
+    applySeo(route);
     setTimeout(loadAds, 100);
   }
 
@@ -378,9 +488,12 @@
       <div class="page article">
         <div class="breadcrumb"><a href="/guides">Survival Guides</a> / ${esc(g.title)}</div>
         <h1>${esc(g.title)}</h1>
+        ${heroBlock('guides', g)}
         <p class="lore">${esc(g.tagline)}</p>
         ${sectionsHTML(g.sections)}
         ${tipBox()}
+        ${relatedBlock(g)}
+        ${sourceNotes(g)}
       </div>
       ${adSlot('in-article')}
     `;
@@ -468,6 +581,8 @@
               ${pairings.length ? pairings.map((o) => `<a class="chip" href="/occupations/${esc(o.id)}">${esc(o.name)}</a>`).join('') : '<span class="qd">Flexible — works with any occupation.</span>'}
             </div>
             <h3>Community Verdict</h3><p>${esc(t.communityVerdict)}</p>
+            ${relatedBlock(t)}
+            ${sourceNotes(t)}
           </div>
           <div class="infobox">
             <div class="infobox-head ${t.polarity === 'positive' ? 'pos' : 'neg'}">${esc(t.name)}</div>
@@ -522,6 +637,8 @@
             ${sectionsHTML(o.sections)}
             <h3>Verdict</h3>
             <div class="callout tip">${esc(o.verdict)}</div>
+            ${relatedBlock(o)}
+            ${sourceNotes(o)}
           </div>
           <div class="infobox">
             <div class="infobox-head">${esc(o.name)}</div>
@@ -582,6 +699,8 @@
         <div class="chip-list">
           ${pairings.length ? pairings.map((p) => `<a class="chip" href="/skills/${esc(p.id)}">${esc(p.name)}</a>`).join('') : '<span class="qd">Pairs broadly with any build.</span>'}
         </div>
+        ${relatedBlock(s)}
+        ${sourceNotes(s)}
       </div>
       ${adSlot('in-article')}
     `;
@@ -670,6 +789,8 @@
             <div class="callout tip">${esc(w.bestSituations)}</div>
             <h3>Worst Situations</h3>
             <div class="callout warn">${esc(w.worstSituations)}</div>
+            ${relatedBlock(w)}
+            ${sourceNotes(w)}
           </div>
           <div class="infobox">
             <div class="infobox-head">${esc(w.name)}</div>
@@ -720,9 +841,12 @@
         <div class="detail-grid">
           <div class="article">
             <h1>${esc(m.name)}</h1>
+            ${heroBlock('maps', m)}
             <p class="lore">${esc(m.tone)}</p>
             ${sectionsHTML(m.sections)}
             ${tipBox()}
+            ${relatedBlock(m)}
+            ${sourceNotes(m)}
           </div>
           <div class="infobox">
             <div class="infobox-head">${esc(m.name)}</div>
@@ -768,9 +892,13 @@
       <div class="page article">
         <div class="breadcrumb"><a href="/build42">Build 42</a> / ${esc(b.name)}</div>
         <h1>${esc(b.name)}</h1>
+        ${heroBlock('build42', b)}
         <p class="lore">${esc(b.intro)}</p>
+        ${calloutBlock('build42', 'Build 42 Warning', 'Build 42 is still changing. Systems, numbers, recipes, traits, occupations, animal behaviour and crafting requirements may shift between unstable patches. This guide focuses on practical survival patterns rather than fragile exact values.')}
         ${sectionsHTML(b.sections)}
         ${tipBox()}
+        ${relatedBlock(b)}
+        ${sourceNotes(b)}
       </div>
       ${adSlot('in-article')}
     `;
@@ -806,9 +934,12 @@
       <div class="page article">
         <div class="breadcrumb"><a href="/vehicles">Vehicles</a> / ${esc(v.name)}</div>
         <h1>${esc(v.name)}</h1>
+        ${heroBlock('vehicles', v)}
         <p class="lore">${esc(v.intro)}</p>
         ${sectionsHTML(v.sections)}
         ${tipBox()}
+        ${relatedBlock(v)}
+        ${sourceNotes(v)}
       </div>
       ${adSlot('in-article')}
     `;
@@ -853,10 +984,13 @@
       <div class="page article">
         <div class="breadcrumb"><a href="/mods">Mods</a> / ${esc(m.name)}</div>
         <h1>${esc(m.name)}</h1>
+        ${heroBlock('mods', m)}
         <p class="lore">${esc(m.intro)}</p>
         ${sectionsHTML(m.sections)}
         ${modList}
         ${tipBox()}
+        ${relatedBlock(m)}
+        ${sourceNotes(m)}
       </div>
       ${adSlot('in-article')}
     `;
@@ -892,9 +1026,12 @@
       <div class="page article">
         <div class="breadcrumb"><a href="/multiplayer">Multiplayer</a> / ${esc(mp.name)}</div>
         <h1>${esc(mp.name)}</h1>
+        ${heroBlock('multiplayer', mp)}
         <p class="lore">${esc(mp.intro)}</p>
         ${sectionsHTML(mp.sections)}
         ${tipBox()}
+        ${relatedBlock(mp)}
+        ${sourceNotes(mp)}
       </div>
       ${adSlot('in-article')}
     `;
@@ -1012,6 +1149,7 @@
         <h1>${p.title}</h1>
         <div class="breadcrumb">Home / ${p.crumb}</div>
         ${p.body}
+        ${sourceNotes(null)}
       </div>
     `;
   }

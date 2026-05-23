@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- pzw:head -->
+    <title>Mod Load Order Guide | Project Zomboid Survival Wiki</title>
+    <meta name="description" content="Learn how to think about Project Zomboid mod load order, dependencies, testing, backups, and avoiding broken saves." />
+    <meta name="keywords" content="project zomboid mod load order, project zomboid mod conflicts, project zomboid mod dependencies" />
+    <link rel="canonical" href="https://projectzomboid.gamewikihub.com/mods/mod-load-order" />
+    <meta property="og:site_name" content="Project Zomboid Survival Wiki" />
+    <meta property="og:title" content="Mod Load Order Guide | Project Zomboid Survival Wiki" />
+    <meta property="og:description" content="Learn how to think about Project Zomboid mod load order, dependencies, testing, backups, and avoiding broken saves." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://projectzomboid.gamewikihub.com/mods/mod-load-order" />
+    <meta property="og:image" content="https://projectzomboid.gamewikihub.com/assets/images/mods/mod-load-order.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Mod Load Order Guide | Project Zomboid Survival Wiki" />
+    <meta name="twitter:description" content="Learn how to think about Project Zomboid mod load order, dependencies, testing, backups, and avoiding broken saves." />
+    <meta name="twitter:image" content="https://projectzomboid.gamewikihub.com/assets/images/mods/mod-load-order.jpg" />
+    <!-- /pzw:head -->
+    <script type="application/ld+json" id="pzw-jsonld">{"@context":"https://schema.org","@type":"Article","headline":"Mod Load Order","description":"Learn how to think about Project Zomboid mod load order, dependencies, testing, backups, and avoiding broken saves.","image":"https://projectzomboid.gamewikihub.com/assets/images/mods/mod-load-order.jpg","url":"https://projectzomboid.gamewikihub.com/mods/mod-load-order","datePublished":"2026-05-22","dateModified":"2026-05-22","author":{"@type":"Organization","name":"Project Zomboid Survival Wiki"},"publisher":{"@type":"Organization","name":"Project Zomboid Survival Wiki","url":"https://projectzomboid.gamewikihub.com"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://projectzomboid.gamewikihub.com/mods/mod-load-order"}}</script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23121212'/%3E%3Ccircle cx='50' cy='50' r='30' fill='none' stroke='%239B2C2C' stroke-width='8'/%3E%3Ccircle cx='50' cy='50' r='9' fill='%23B7A369'/%3E%3Cpath d='M50 16 Q44 34 50 42 Q56 34 50 16Z' fill='%23B7A369'/%3E%3Cpath d='M22 70 Q40 60 46 50 Q33 50 22 70Z' fill='%23B7A369'/%3E%3Cpath d='M78 70 Q60 60 54 50 Q67 50 78 70Z' fill='%23B7A369'/%3E%3C/svg%3E"
+    />
+
+    <!-- ============================================
+     Google AdSense
+     To enable ads: replace ca-pub-XXXXXXXXXXXXXXXX in
+     index.html, app.js and ads.txt with your publisher
+     ID and slot IDs, then uncomment the script below.
+     ============================================ -->
+
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1319817671788428"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="scanlines" aria-hidden="true"></div>
+
+    <header class="site">
+      <a class="logo" href="/">
+        <span class="logo-mark">PZ</span>
+        <span class="logo-text"
+          >PROJECT ZOMBOID<small>WIKI · unofficial survival manual</small></span
+        >
+      </a>
+      <div class="search">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search traits, skills, weapons, maps…"
+          autocomplete="off"
+          aria-label="Search the wiki"
+        />
+        <div class="search-results" id="searchResults"></div>
+      </div>
+      <nav class="top" aria-label="Primary">
+        <a href="/guides">Guides</a>
+        <a href="/traits">Traits</a>
+        <a href="/skills">Skills</a>
+        <a href="/weapons">Weapons</a>
+        <a href="/maps">Maps</a>
+        <a href="/build42">Build 42</a>
+        <a href="/about">About</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        ☰
+      </button>
+    </header>
+
+    <div class="emergency-bar" aria-hidden="true">
+      <span
+        >⚠ KNOX COUNTY UNDER QUARANTINE — DO NOT ATTEMPT TO LEAVE THE EXCLUSION
+        ZONE — STAY INDOORS — AWAIT FURTHER INSTRUCTION ⚠</span
+      >
+      <span
+        >⚠ KNOX COUNTY UNDER QUARANTINE — DO NOT ATTEMPT TO LEAVE THE EXCLUSION
+        ZONE — STAY INDOORS — AWAIT FURTHER INSTRUCTION ⚠</span
+      >
+    </div>
+
+    <div class="layout">
+      <aside class="left" id="leftNav"></aside>
+      <main id="main">
+      
+      <aside class="ad-slot ad-banner" aria-label="Advertisement">
+        <span class="ad-label">Advertisement</span>
+        <ins class="adsbygoogle"
+          style="display:block;width:100%;height:90px;"
+          data-ad-client="ca-pub-1319817671788428"
+          data-ad-slot="6141169453"
+          
+          data-full-width-responsive="true"></ins>
+      </aside>
+    
+      <div class="page article">
+        <div class="breadcrumb"><a href="/mods">Mods</a> / Mod Load Order</div>
+        <h1>Mod Load Order</h1>
+        <figure class="page-hero">
+      <img src="/assets/images/mods/mod-load-order.jpg" alt="A Project Zomboid mod load order list screen" width="1200" height="500"
+        onerror="this.closest('.page-hero').classList.add('hero-missing');this.remove();">
+      <span class="hero-fallback" aria-hidden="true">Mod Load Order</span>
+    </figure>
+        <p class="lore">Project Zomboid modding is powerful, but load order and dependencies matter. When mods touch the same systems, one can override or break another.</p>
+        <h3>Load Order Is Damage Control</h3><p>Load order will not make a bad mod list good. What it does is decide which mod wins when two of them touch the same system — and getting that wrong is how saves quietly corrupt.</p><h3>Practical Rules</h3><ul><li>Install dependencies before the mods that need them</li><li>Add big system-changing mods slowly, one at a time</li><li>Avoid adding map mods to a world that is already explored</li><li>Keep written notes on what you changed and when</li><li>Test thoroughly before committing to a long-term save</li><li>Back up saves before any major mod change</li></ul><h3>Beginner Mistake</h3><div class="callout mistake"><span class="callout-label">Beginner Mistake</span>Adding twenty mods at once feels efficient. It is not. It just guarantees that when something breaks, troubleshooting will be impossible.</div>
+        
+        <div class="survivor-tip"><span class="st-label">Survivor Tip</span><p>&ldquo;A bored survivor makes reckless decisions. Keep books, a radio and a routine.&rdquo;</p></div>
+        <nav class="related" aria-label="Related pages">
+      <h3>Related Pages</h3>
+      <div class="related-grid">
+        <a class="related-card" href="/mods/overview">Mods Overview</a><a class="related-card" href="/mods/best-multiplayer-mods">Best Multiplayer Mods</a><a class="related-card" href="/mods/server-mods">Server Mods</a>
+      </div>
+    </nav>
+        <aside class="source-notes" aria-label="Sources and update notes">
+      <div class="src-head">Sources &amp; Update Notes</div>
+      <div class="src-meta">
+        <span><strong>Last updated:</strong> 2026-05-22</span>
+        <span><strong>Build focus:</strong> Build 41 stable + Build 42 unstable notes</span>
+      </div>
+      <div class="src-checked"><strong>Sources checked:</strong></div>
+      <ul class="src-list"><li><a href="https://store.steampowered.com/app/108600/Project_Zomboid/" target="_blank" rel="noopener noreferrer">Project Zomboid Steam Store</a><span> — Used for the official game description and broad feature categories.</span></li><li><a href="https://theindiestone.com/forums/" target="_blank" rel="noopener noreferrer">The Indie Stone Forums</a><span> — Used for patch discussion and official forum posts.</span></li></ul>
+      
+      <p class="src-uncertain">Note: Build 42 systems are still changing between unstable patches. Treat exact numbers, recipes and requirements as patch-dependent.</p>
+    </aside>
+      </div>
+      
+      <aside class="ad-slot ad-in-article" aria-label="Advertisement">
+        <span class="ad-label">Advertisement</span>
+        <ins class="adsbygoogle"
+          style="display:block;"
+          data-ad-client="ca-pub-1319817671788428"
+          data-ad-slot="6141169453"
+          data-ad-format="auto"
+          data-full-width-responsive="true"></ins>
+      </aside>
+    
+    </main>
+      <aside class="right" id="rightNav"></aside>
+    </div>
+
+    <footer class="site">
+      <p class="footer-tagline">This is how you died.</p>
+      <nav class="footer-links" aria-label="External resources">
+        <a
+          href="https://store.steampowered.com/app/108600/Project_Zomboid/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Steam</a
+        >
+        <a
+          href="https://projectzomboid.com/blog/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Official Blog</a
+        >
+        <a
+          href="https://www.reddit.com/r/projectzomboid/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Reddit</a
+        >
+        <a href="/patches">Build News</a>
+      </nav>
+      <nav class="footer-links" aria-label="Site information">
+        <a href="/about">About</a>
+        <a href="/privacy-policy">Privacy Policy</a>
+        <a href="/contact">Contact</a>
+      </nav>
+      <p>
+        Unofficial fan wiki · Project Zomboid is © The Indie Stone · GameWikiHub
+        · &copy; 2026. All rights reserved.
+      </p>
+    </footer>
+
+    <script src="/js/data.js"></script>
+    <script src="/js/meta.js"></script>
+    <script src="/js/app.js"></script>
+  </body>
+</html>
