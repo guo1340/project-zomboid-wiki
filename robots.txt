@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://projectzomboid.gamewikihub.com/sitemap.xml
+Sitemap: https://project-zomboid.gamewikihub.com/sitemap.xml

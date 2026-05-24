@@ -3,6 +3,7 @@
 Use this file as the implementation + content brief for updating the current `project-zomboid-wiki` static site.
 
 Primary goals:
+
 1. Add per-page SEO metadata.
 2. Add real images/screenshots.
 3. Add source/update notes to pages.
@@ -32,6 +33,7 @@ The site content is currently driven mostly from `js/data.js`.
 Do not break the current Cloudflare Worker static assets deployment.
 
 Current deployment model:
+
 ```txt
 wrangler deploy
 assets.directory = "./"
@@ -49,6 +51,7 @@ The site should feel like:
 > A survival field manual written by someone who has actually died 200 times in Knox Country.
 
 Tone rules:
+
 - Be practical.
 - Be opinionated.
 - Explain why something matters.
@@ -59,9 +62,11 @@ Tone rules:
 - Paraphrase and cite sources in source notes.
 
 Bad:
+
 > The car is a vehicle used for transportation.
 
 Good:
+
 > A working car changes the entire run. It lets you choose your fights, escape helicopter chaos, haul generators, and abandon a bad base before pride gets you killed.
 
 ---
@@ -78,7 +83,7 @@ For every page object, add or generate:
 seo: {
   title: "...",
   description: "...",
-  canonical: "https://projectzomboid.gamewikihub.com/path",
+  canonical: "https://project-zomboid.gamewikihub.com/path",
   ogTitle: "...",
   ogDescription: "...",
   ogImage: "/assets/images/og/...",
@@ -107,6 +112,7 @@ Build 42 Overview | Project Zomboid Survival Wiki
 Keep descriptions between 140–160 characters when possible.
 
 Example:
+
 ```txt
 Learn how to survive your first day in Project Zomboid with practical priorities, combat basics, common mistakes, and early-game survival tips.
 ```
@@ -154,6 +160,7 @@ Generate real HTML files for each route during a build step, for example:
 ```
 
 Each generated HTML page should include:
+
 - unique `<title>`
 - unique `<meta name="description">`
 - canonical link
@@ -166,6 +173,7 @@ Each generated HTML page should include:
 ## If keeping SPA temporarily
 
 At minimum:
+
 - dynamically update `document.title`
 - update/create meta description
 - update canonical URL
@@ -188,18 +196,18 @@ Example skeleton:
 
 ```html
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "First Day Survival Guide",
-  "description": "Learn how to survive your first day in Project Zomboid...",
-  "image": "https://projectzomboid.gamewikihub.com/assets/images/og/first-day-survival.jpg",
-  "dateModified": "2026-05-22",
-  "author": {
-    "@type": "Organization",
-    "name": "Project Zomboid Survival Wiki"
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "First Day Survival Guide",
+    "description": "Learn how to survive your first day in Project Zomboid...",
+    "image": "https://project-zomboid.gamewikihub.com/assets/images/og/first-day-survival.jpg",
+    "dateModified": "2026-05-22",
+    "author": {
+      "@type": "Organization",
+      "name": "Project Zomboid Survival Wiki"
+    }
   }
-}
 </script>
 ```
 
@@ -228,6 +236,7 @@ Sources & Update Notes
 ## Suggested display
 
 Small dark card:
+
 - Last updated date
 - Game version / Build status
 - Sources checked
@@ -275,6 +284,7 @@ Do not put citations inline everywhere. Keep content readable and place sources 
 Do not scrape and hotlink random copyrighted images directly into the site.
 
 Preferred image sources:
+
 1. Screenshots we capture ourselves in-game.
 2. Official Steam store screenshots, if used as promotional/reference imagery.
 3. Official Project Zomboid blog images, if used with attribution.
@@ -340,6 +350,7 @@ Create:
 Use lowercase kebab-case.
 
 Good:
+
 ```txt
 best-base-locations.jpg
 hotwire-car-guide.jpg
@@ -347,6 +358,7 @@ build42-animals.jpg
 ```
 
 Bad:
+
 ```txt
 IMG_1234.png
 ScreenshotFinalFINAL.jpg
@@ -362,6 +374,7 @@ heroAlt: "A quiet Project Zomboid neighborhood street used as first-day survival
 ```
 
 Each image must have:
+
 - descriptive `alt`
 - lazy loading except hero image
 - width/height where possible
@@ -370,11 +383,13 @@ Each image must have:
 Example:
 
 ```html
-<img src="/assets/images/vehicles/abandoned-car.jpg"
-     alt="Abandoned vehicle in Project Zomboid used for vehicle survival guide"
-     loading="lazy"
-     width="1200"
-     height="675">
+<img
+  src="/assets/images/vehicles/abandoned-car.jpg"
+  alt="Abandoned vehicle in Project Zomboid used for vehicle survival guide"
+  loading="lazy"
+  width="1200"
+  height="675"
+/>
 ```
 
 ---
@@ -386,31 +401,37 @@ Use these as places to review and manually collect/replace images. Do not hotlin
 ## Official / safer sources
 
 Project Zomboid Steam page:
+
 ```txt
 https://store.steampowered.com/app/108600/Project_Zomboid/
 ```
 
 Official Project Zomboid blog:
+
 ```txt
 https://projectzomboid.com/blog/
 ```
 
 Build 42 official upcoming features:
+
 ```txt
 https://projectzomboid.com/blog/upcoming-features-b42/
 ```
 
 Steam News Hub:
+
 ```txt
 https://store.steampowered.com/news/app/108600
 ```
 
 Steam community screenshots:
+
 ```txt
 https://steamcommunity.com/app/108600/screenshots/
 ```
 
 SteamDB screenshots reference:
+
 ```txt
 https://steamdb.info/app/108600/screenshots/
 ```
@@ -418,6 +439,7 @@ https://steamdb.info/app/108600/screenshots/
 ## Recommendation
 
 Best practical route:
+
 - Launch with placeholder dark survival-themed panels and Lucide icons.
 - Replace with our own in-game screenshots over time.
 - Capture screenshots at 1920x1080.
@@ -431,6 +453,7 @@ Best practical route:
 Use an open icon library instead of copying game item icons unless permission is clear.
 
 Recommended:
+
 - Lucide Icons
 - Font Awesome Free
 - Heroicons
@@ -456,8 +479,8 @@ const iconMap = {
   carpentry: "Hammer",
   combat: "Crosshair",
   baseBuilding: "Home",
-  serverSettings: "SlidersHorizontal"
-}
+  serverSettings: "SlidersHorizontal",
+};
 ```
 
 ---
@@ -482,10 +505,14 @@ Add or expand these pages:
 ### SEO
 
 ```js
-title: "Vehicles Guide | Project Zomboid Survival Wiki"
-description: "Learn why vehicles matter in Project Zomboid, how to choose a car, manage fuel, avoid noise mistakes, and survive long-distance travel."
-canonical: "https://projectzomboid.gamewikihub.com/vehicles/overview"
-keywords: ["project zomboid vehicles", "project zomboid cars", "project zomboid vehicle guide"]
+title: "Vehicles Guide | Project Zomboid Survival Wiki";
+description: "Learn why vehicles matter in Project Zomboid, how to choose a car, manage fuel, avoid noise mistakes, and survive long-distance travel.";
+canonical: "https://project-zomboid.gamewikihub.com/vehicles/overview";
+keywords: [
+  "project zomboid vehicles",
+  "project zomboid cars",
+  "project zomboid vehicle guide",
+];
 ```
 
 ### Hero
@@ -506,6 +533,7 @@ New players often treat cars as optional. Experienced survivors treat mobility a
 #### What Makes A Good Vehicle
 
 Look for:
+
 - enough cargo space for loot runs
 - decent engine quality
 - usable tire condition
@@ -514,6 +542,7 @@ Look for:
 - trunk capacity for generator or base supplies
 
 Avoid:
+
 - cars boxed in by wrecks
 - cars surrounded by zombies
 - cars with terrible engine condition
@@ -538,10 +567,14 @@ Cars become more important after the early game. You will eventually need long-d
 ### SEO
 
 ```js
-title: "How To Hotwire Cars | Project Zomboid Survival Wiki"
-description: "Learn how hotwiring works in Project Zomboid, what skills you need, why Burglar is useful, and how to avoid loud vehicle mistakes."
-canonical: "https://projectzomboid.gamewikihub.com/vehicles/hotwire-cars"
-keywords: ["project zomboid hotwire", "project zomboid how to hotwire cars", "project zomboid burglar hotwire"]
+title: "How To Hotwire Cars | Project Zomboid Survival Wiki";
+description: "Learn how hotwiring works in Project Zomboid, what skills you need, why Burglar is useful, and how to avoid loud vehicle mistakes.";
+canonical: "https://project-zomboid.gamewikihub.com/vehicles/hotwire-cars";
+keywords: [
+  "project zomboid hotwire",
+  "project zomboid how to hotwire cars",
+  "project zomboid burglar hotwire",
+];
 ```
 
 ### Hero
@@ -560,10 +593,12 @@ Hotwiring is one of the biggest mobility upgrades in Project Zomboid. Once you c
 #### Requirements
 
 Use the accurate requirements for the current build. Historically, the basic requirement has been either:
+
 - Burglar occupation, or
 - enough Mechanics + Electrical skill to hotwire
 
 Add a warning:
+
 ```txt
 Exact requirements may shift with Build 42 balance changes. Keep this page updated after patches.
 ```
@@ -575,6 +610,7 @@ Burglar is not just a stealth role. It removes the early skill barrier for hotwi
 #### Safe Hotwiring Checklist
 
 Before hotwiring:
+
 - clear zombies around the driver-side door
 - check for fuel
 - check engine condition
@@ -607,10 +643,14 @@ The best car is not always the fastest car. The best car is the one that starts,
 ### SEO
 
 ```js
-title: "Best Vehicles | Project Zomboid Survival Wiki"
-description: "Compare the best vehicle types in Project Zomboid for storage, speed, durability, fuel use, towing, and long-term survival."
-canonical: "https://projectzomboid.gamewikihub.com/vehicles/best-vehicles"
-keywords: ["project zomboid best vehicles", "project zomboid best car", "project zomboid vehicle tier list"]
+title: "Best Vehicles | Project Zomboid Survival Wiki";
+description: "Compare the best vehicle types in Project Zomboid for storage, speed, durability, fuel use, towing, and long-term survival.";
+canonical: "https://project-zomboid.gamewikihub.com/vehicles/best-vehicles";
+keywords: [
+  "project zomboid best vehicles",
+  "project zomboid best car",
+  "project zomboid vehicle tier list",
+];
 ```
 
 ### Content
@@ -622,6 +662,7 @@ The best vehicle depends on what you need today. A fast car is great until you n
 #### Vehicle Roles
 
 ##### Best For Loot Runs
+
 Use vans, trucks, and vehicles with high trunk capacity.
 
 Why:
@@ -631,6 +672,7 @@ Weakness:
 Larger vehicles are harder to maneuver and can be dangerous in tight urban roads.
 
 ##### Best For Scouting
+
 Use smaller cars with decent speed and handling.
 
 Why:
@@ -640,12 +682,14 @@ Weakness:
 Smaller cars may not survive repeated zombie impacts.
 
 ##### Best For Base Supply Runs
+
 Use cargo vans, pickup trucks, or anything with large storage and enough durability.
 
 Why:
 Generators, planks, metalworking gear, and water containers get heavy fast.
 
 ##### Best For City Driving
+
 Use smaller vehicles.
 
 Why:
@@ -654,6 +698,7 @@ Louisville and dense towns punish wide turns. A bulky vehicle can get trapped be
 #### What To Prioritize
 
 Ranking criteria:
+
 1. Engine condition
 2. Fuel availability
 3. Tire condition
@@ -673,10 +718,14 @@ Do not fall in love with a car because it looks cool. A flashy car with no fuel 
 ### SEO
 
 ```js
-title: "Vehicle Maintenance Guide | Project Zomboid Survival Wiki"
-description: "Learn how to maintain vehicles in Project Zomboid, what parts matter most, and how Mechanics skill affects long-term survival."
-canonical: "https://projectzomboid.gamewikihub.com/vehicles/vehicle-maintenance"
-keywords: ["project zomboid mechanics", "project zomboid vehicle repair", "project zomboid car maintenance"]
+title: "Vehicle Maintenance Guide | Project Zomboid Survival Wiki";
+description: "Learn how to maintain vehicles in Project Zomboid, what parts matter most, and how Mechanics skill affects long-term survival.";
+canonical: "https://project-zomboid.gamewikihub.com/vehicles/vehicle-maintenance";
+keywords: [
+  "project zomboid mechanics",
+  "project zomboid vehicle repair",
+  "project zomboid car maintenance",
+];
 ```
 
 ### Content
@@ -698,6 +747,7 @@ Vehicle maintenance does not feel urgent until the car fails during a horde esca
 #### Mechanics XP Strategy
 
 General approach:
+
 - read Mechanics skill books when available
 - inspect vehicles regularly
 - remove and reinstall safe parts when possible
@@ -706,6 +756,7 @@ General approach:
 #### Long-Term Vehicle Setup
 
 Keep:
+
 - spare gas cans
 - spare battery
 - spare tires
@@ -725,10 +776,14 @@ A survivor with two decent cars is safer than a survivor with one perfect car.
 ### SEO
 
 ```js
-title: "Fuel Guide | Project Zomboid Survival Wiki"
-description: "Learn how fuel works in Project Zomboid, how to manage gas stations, generators, gas cans, and long-term vehicle survival."
-canonical: "https://projectzomboid.gamewikihub.com/vehicles/fuel-guide"
-keywords: ["project zomboid fuel", "project zomboid gas station", "project zomboid generator fuel"]
+title: "Fuel Guide | Project Zomboid Survival Wiki";
+description: "Learn how fuel works in Project Zomboid, how to manage gas stations, generators, gas cans, and long-term vehicle survival.";
+canonical: "https://project-zomboid.gamewikihub.com/vehicles/fuel-guide";
+keywords: [
+  "project zomboid fuel",
+  "project zomboid gas station",
+  "project zomboid generator fuel",
+];
 ```
 
 ### Content
@@ -764,10 +819,14 @@ Do not drive everywhere just because you can. Every trip spends fuel, creates no
 ### SEO
 
 ```js
-title: "Towing Guide | Project Zomboid Survival Wiki"
-description: "Learn when towing is worth it in Project Zomboid, how to move broken cars, and what mistakes make towing dangerous."
-canonical: "https://projectzomboid.gamewikihub.com/vehicles/towing-guide"
-keywords: ["project zomboid towing", "project zomboid tow car", "project zomboid move vehicles"]
+title: "Towing Guide | Project Zomboid Survival Wiki";
+description: "Learn when towing is worth it in Project Zomboid, how to move broken cars, and what mistakes make towing dangerous.";
+canonical: "https://project-zomboid.gamewikihub.com/vehicles/towing-guide";
+keywords: [
+  "project zomboid towing",
+  "project zomboid tow car",
+  "project zomboid move vehicles",
+];
 ```
 
 ### Content
@@ -817,10 +876,14 @@ Add or expand these pages:
 ### SEO
 
 ```js
-title: "Mods Guide | Project Zomboid Survival Wiki"
-description: "Learn how Project Zomboid mods change gameplay, what types of mods to install, and how to avoid unstable mod setups."
-canonical: "https://projectzomboid.gamewikihub.com/mods/overview"
-keywords: ["project zomboid mods", "project zomboid workshop", "project zomboid mod guide"]
+title: "Mods Guide | Project Zomboid Survival Wiki";
+description: "Learn how Project Zomboid mods change gameplay, what types of mods to install, and how to avoid unstable mod setups.";
+canonical: "https://project-zomboid.gamewikihub.com/mods/overview";
+keywords: [
+  "project zomboid mods",
+  "project zomboid workshop",
+  "project zomboid mod guide",
+];
 ```
 
 ### Content
@@ -856,10 +919,14 @@ Do not build a first serious run around a giant mod pack. If something breaks, y
 ### SEO
 
 ```js
-title: "Best Essential Mods | Project Zomboid Survival Wiki"
-description: "A practical list of essential Project Zomboid mods for quality of life, immersion, vehicles, UI, and smoother survival runs."
-canonical: "https://projectzomboid.gamewikihub.com/mods/best-essential-mods"
-keywords: ["project zomboid best mods", "project zomboid essential mods", "project zomboid workshop mods"]
+title: "Best Essential Mods | Project Zomboid Survival Wiki";
+description: "A practical list of essential Project Zomboid mods for quality of life, immersion, vehicles, UI, and smoother survival runs.";
+canonical: "https://project-zomboid.gamewikihub.com/mods/best-essential-mods";
+keywords: [
+  "project zomboid best mods",
+  "project zomboid essential mods",
+  "project zomboid workshop mods",
+];
 ```
 
 ### Content
@@ -871,32 +938,40 @@ An essential mod should make the game easier to read, smoother to manage, or ric
 #### Suggested Mod Categories
 
 ##### Quality Of Life Mods
+
 Use for:
+
 - better inventory readability
 - cleaner UI
 - faster repetitive actions
 - better item information
 
 ##### Vehicle Mods
+
 Use for:
+
 - more vehicle variety
 - better long-term car collecting
 - stronger roleplay servers
 
 ##### Immersion Mods
+
 Use for:
+
 - sitting/lying animations
 - clothing variety
 - environmental details
 - better survivor fantasy
 
 ##### Weapon Mods
+
 Use carefully.
 Weapon packs can make the game too easy if loot rates are not balanced.
 
 #### Important Warning
 
 Do not present a mod list as permanently correct. Mods update, break, disappear, or conflict. Each mod page should include:
+
 - Workshop link
 - last checked date
 - compatibility note
@@ -920,10 +995,14 @@ modMeta: {
 ### SEO
 
 ```js
-title: "Best Multiplayer Mods | Project Zomboid Survival Wiki"
-description: "Recommended Project Zomboid multiplayer mods for quality of life, roleplay, server management, vehicles, and balanced co-op survival."
-canonical: "https://projectzomboid.gamewikihub.com/mods/best-multiplayer-mods"
-keywords: ["project zomboid multiplayer mods", "project zomboid server mods", "project zomboid co-op mods"]
+title: "Best Multiplayer Mods | Project Zomboid Survival Wiki";
+description: "Recommended Project Zomboid multiplayer mods for quality of life, roleplay, server management, vehicles, and balanced co-op survival.";
+canonical: "https://project-zomboid.gamewikihub.com/mods/best-multiplayer-mods";
+keywords: [
+  "project zomboid multiplayer mods",
+  "project zomboid server mods",
+  "project zomboid co-op mods",
+];
 ```
 
 ### Content
@@ -953,6 +1032,7 @@ A mod that works fine alone can become a server problem when ten people use it. 
 #### Server Owner Rule
 
 Before adding a mod to a live server:
+
 1. test it on a private save
 2. check comments/update date
 3. read dependency requirements
@@ -966,10 +1046,14 @@ Before adding a mod to a live server:
 ### SEO
 
 ```js
-title: "Mod Load Order Guide | Project Zomboid Survival Wiki"
-description: "Learn how to think about Project Zomboid mod load order, dependencies, testing, backups, and avoiding broken saves."
-canonical: "https://projectzomboid.gamewikihub.com/mods/mod-load-order"
-keywords: ["project zomboid mod load order", "project zomboid mod conflicts", "project zomboid mod dependencies"]
+title: "Mod Load Order Guide | Project Zomboid Survival Wiki";
+description: "Learn how to think about Project Zomboid mod load order, dependencies, testing, backups, and avoiding broken saves.";
+canonical: "https://project-zomboid.gamewikihub.com/mods/mod-load-order";
+keywords: [
+  "project zomboid mod load order",
+  "project zomboid mod conflicts",
+  "project zomboid mod dependencies",
+];
 ```
 
 ### Content
@@ -1013,10 +1097,14 @@ Add or expand these pages:
 ### SEO
 
 ```js
-title: "Multiplayer Guide | Project Zomboid Survival Wiki"
-description: "Learn how Project Zomboid multiplayer changes survival, base building, loot, vehicles, PvP, co-op roles, and server settings."
-canonical: "https://projectzomboid.gamewikihub.com/multiplayer/overview"
-keywords: ["project zomboid multiplayer", "project zomboid co-op", "project zomboid server guide"]
+title: "Multiplayer Guide | Project Zomboid Survival Wiki";
+description: "Learn how Project Zomboid multiplayer changes survival, base building, loot, vehicles, PvP, co-op roles, and server settings.";
+canonical: "https://project-zomboid.gamewikihub.com/multiplayer/overview";
+keywords: [
+  "project zomboid multiplayer",
+  "project zomboid co-op",
+  "project zomboid server guide",
+];
 ```
 
 ### Content
@@ -1057,10 +1145,14 @@ Do not let everyone loot randomly. A group without roles becomes five people fil
 ### SEO
 
 ```js
-title: "Best Server Settings | Project Zomboid Survival Wiki"
-description: "Recommended Project Zomboid server settings for beginner co-op, hardcore survival, roleplay, PvP, loot balance, and zombie population."
-canonical: "https://projectzomboid.gamewikihub.com/multiplayer/best-server-settings"
-keywords: ["project zomboid server settings", "project zomboid best server settings", "project zomboid co-op settings"]
+title: "Best Server Settings | Project Zomboid Survival Wiki";
+description: "Recommended Project Zomboid server settings for beginner co-op, hardcore survival, roleplay, PvP, loot balance, and zombie population.";
+canonical: "https://project-zomboid.gamewikihub.com/multiplayer/best-server-settings";
+keywords: [
+  "project zomboid server settings",
+  "project zomboid best server settings",
+  "project zomboid co-op settings",
+];
 ```
 
 ### Content
@@ -1072,6 +1164,7 @@ A Project Zomboid server is not just hosted gameplay. The settings decide whethe
 #### Beginner-Friendly Co-op Settings
 
 Recommended direction:
+
 - lower initial zombie population
 - slower population peak
 - more forgiving loot
@@ -1083,6 +1176,7 @@ Recommended direction:
 #### Hardcore Survival Settings
 
 Recommended direction:
+
 - higher zombie population
 - rare loot
 - longer respawn pressure
@@ -1093,6 +1187,7 @@ Recommended direction:
 #### Roleplay Server Settings
 
 Recommended direction:
+
 - safehouse systems enabled
 - PvP controlled by rules
 - loot respawn carefully tuned
@@ -1103,6 +1198,7 @@ Recommended direction:
 #### PvP Server Settings
 
 Recommended direction:
+
 - clear PvP rules
 - safehouse protection limits
 - anti-grief rules
@@ -1133,10 +1229,14 @@ Do not copy random server settings blindly. Decide what kind of story you want t
 ### SEO
 
 ```js
-title: "Co-op Survival Guide | Project Zomboid Survival Wiki"
-description: "Learn how to survive Project Zomboid co-op with group roles, base organization, shared loot rules, and safer combat habits."
-canonical: "https://projectzomboid.gamewikihub.com/multiplayer/co-op-survival"
-keywords: ["project zomboid co-op guide", "project zomboid multiplayer survival", "project zomboid group base"]
+title: "Co-op Survival Guide | Project Zomboid Survival Wiki";
+description: "Learn how to survive Project Zomboid co-op with group roles, base organization, shared loot rules, and safer combat habits.";
+canonical: "https://project-zomboid.gamewikihub.com/multiplayer/co-op-survival";
+keywords: [
+  "project zomboid co-op guide",
+  "project zomboid multiplayer survival",
+  "project zomboid group base",
+];
 ```
 
 ### Content
@@ -1148,6 +1248,7 @@ A group can survive longer than one player, but only if the group is organized. 
 #### Assign Roles Early
 
 Suggested roles:
+
 - Scout: checks new areas before everyone enters
 - Driver: manages vehicles and escape routes
 - Builder: handles carpentry/base work
@@ -1159,6 +1260,7 @@ Suggested roles:
 #### Shared Base Rules
 
 Set rules for:
+
 - where tools go
 - where weapons go
 - who drives which vehicles
@@ -1186,10 +1288,14 @@ The biggest multiplayer killer is confidence. Three players see ten zombies and 
 ### SEO
 
 ```js
-title: "PvP Guide | Project Zomboid Survival Wiki"
-description: "Learn the basics of Project Zomboid PvP, including risk management, safehouses, ambushes, vehicle danger, and server etiquette."
-canonical: "https://projectzomboid.gamewikihub.com/multiplayer/pvp-guide"
-keywords: ["project zomboid pvp", "project zomboid multiplayer pvp", "project zomboid pvp guide"]
+title: "PvP Guide | Project Zomboid Survival Wiki";
+description: "Learn the basics of Project Zomboid PvP, including risk management, safehouses, ambushes, vehicle danger, and server etiquette.";
+canonical: "https://project-zomboid.gamewikihub.com/multiplayer/pvp-guide";
+keywords: [
+  "project zomboid pvp",
+  "project zomboid multiplayer pvp",
+  "project zomboid pvp guide",
+];
 ```
 
 ### Content
@@ -1222,10 +1328,14 @@ Do not treat PvP like a shooter. A loud victory can still kill you when the zomb
 ### SEO
 
 ```js
-title: "Server Admin Tips | Project Zomboid Survival Wiki"
-description: "Practical Project Zomboid server admin tips for backups, rules, mods, grief prevention, loot settings, and player management."
-canonical: "https://projectzomboid.gamewikihub.com/multiplayer/server-admin-tips"
-keywords: ["project zomboid server admin", "project zomboid dedicated server", "project zomboid server tips"]
+title: "Server Admin Tips | Project Zomboid Survival Wiki";
+description: "Practical Project Zomboid server admin tips for backups, rules, mods, grief prevention, loot settings, and player management.";
+canonical: "https://project-zomboid.gamewikihub.com/multiplayer/server-admin-tips";
+keywords: [
+  "project zomboid server admin",
+  "project zomboid dedicated server",
+  "project zomboid server tips",
+];
 ```
 
 ### Content
@@ -1270,10 +1380,14 @@ A good admin does not just ban griefers. A good admin prevents confusion before 
 ### SEO
 
 ```js
-title: "Multiplayer Etiquette | Project Zomboid Survival Wiki"
-description: "Learn basic Project Zomboid multiplayer etiquette for loot sharing, vehicles, safehouses, voice chat, PvP, and group survival."
-canonical: "https://projectzomboid.gamewikihub.com/multiplayer/etiquette"
-keywords: ["project zomboid multiplayer etiquette", "project zomboid server rules", "project zomboid co-op rules"]
+title: "Multiplayer Etiquette | Project Zomboid Survival Wiki";
+description: "Learn basic Project Zomboid multiplayer etiquette for loot sharing, vehicles, safehouses, voice chat, PvP, and group survival.";
+canonical: "https://project-zomboid.gamewikihub.com/multiplayer/etiquette";
+keywords: [
+  "project zomboid multiplayer etiquette",
+  "project zomboid server rules",
+  "project zomboid co-op rules",
+];
 ```
 
 ### Content
@@ -1314,6 +1428,7 @@ Build 42 is still changing. Some systems, numbers, recipes, traits, occupations,
 ## Build 42 source pages
 
 Use:
+
 ```txt
 https://projectzomboid.com/blog/upcoming-features-b42/
 https://store.steampowered.com/news/app/108600
@@ -1332,33 +1447,33 @@ const sourceRegistry = {
     label: "Project Zomboid Steam Store",
     url: "https://store.steampowered.com/app/108600/Project_Zomboid/",
     type: "official",
-    note: "Official game description and broad feature categories."
+    note: "Official game description and broad feature categories.",
   },
   officialBlogB42: {
     label: "Official Build 42 Upcoming Features Blog",
     url: "https://projectzomboid.com/blog/upcoming-features-b42/",
     type: "official",
-    note: "Official Build 42 feature direction including crafting, animals, and systems."
+    note: "Official Build 42 feature direction including crafting, animals, and systems.",
   },
   steamNews: {
     label: "Project Zomboid Steam News Hub",
     url: "https://store.steampowered.com/news/app/108600",
     type: "official",
-    note: "Patch news and update announcements."
+    note: "Patch news and update announcements.",
   },
   indieStoneForums: {
     label: "The Indie Stone Forums",
     url: "https://theindiestone.com/forums/",
     type: "official/community",
-    note: "Patch discussion and official forum posts."
+    note: "Patch discussion and official forum posts.",
   },
   steamScreenshots: {
     label: "Steam Community Screenshots",
     url: "https://steamcommunity.com/app/108600/screenshots/",
     type: "community",
-    note: "Reference only. Do not use user screenshots without permission."
-  }
-}
+    note: "Reference only. Do not use user screenshots without permission.",
+  },
+};
 ```
 
 ---
@@ -1396,6 +1511,7 @@ Add related links at the bottom of each page.
 Examples:
 
 ## Vehicle pages should link to:
+
 ```txt
 /skills/mechanics
 /skills/electrical
@@ -1406,6 +1522,7 @@ Examples:
 ```
 
 ## Multiplayer pages should link to:
+
 ```txt
 /mods/best-multiplayer-mods
 /vehicles/overview
@@ -1415,6 +1532,7 @@ Examples:
 ```
 
 ## Mod pages should link to:
+
 ```txt
 /multiplayer/best-server-settings
 /mods/mod-load-order
@@ -1422,6 +1540,7 @@ Examples:
 ```
 
 ## Build 42 pages should link to:
+
 ```txt
 /build42/overview
 /build42/animals
@@ -1439,25 +1558,25 @@ Update `sitemap.xml` with all new pages.
 Add at least:
 
 ```txt
-https://projectzomboid.gamewikihub.com/vehicles/overview
-https://projectzomboid.gamewikihub.com/vehicles/hotwire-cars
-https://projectzomboid.gamewikihub.com/vehicles/best-vehicles
-https://projectzomboid.gamewikihub.com/vehicles/vehicle-maintenance
-https://projectzomboid.gamewikihub.com/vehicles/fuel-guide
-https://projectzomboid.gamewikihub.com/vehicles/towing-guide
+https://project-zomboid.gamewikihub.com/vehicles/overview
+https://project-zomboid.gamewikihub.com/vehicles/hotwire-cars
+https://project-zomboid.gamewikihub.com/vehicles/best-vehicles
+https://project-zomboid.gamewikihub.com/vehicles/vehicle-maintenance
+https://project-zomboid.gamewikihub.com/vehicles/fuel-guide
+https://project-zomboid.gamewikihub.com/vehicles/towing-guide
 
-https://projectzomboid.gamewikihub.com/mods/overview
-https://projectzomboid.gamewikihub.com/mods/best-essential-mods
-https://projectzomboid.gamewikihub.com/mods/best-multiplayer-mods
-https://projectzomboid.gamewikihub.com/mods/mod-load-order
-https://projectzomboid.gamewikihub.com/mods/server-mods
+https://project-zomboid.gamewikihub.com/mods/overview
+https://project-zomboid.gamewikihub.com/mods/best-essential-mods
+https://project-zomboid.gamewikihub.com/mods/best-multiplayer-mods
+https://project-zomboid.gamewikihub.com/mods/mod-load-order
+https://project-zomboid.gamewikihub.com/mods/server-mods
 
-https://projectzomboid.gamewikihub.com/multiplayer/overview
-https://projectzomboid.gamewikihub.com/multiplayer/best-server-settings
-https://projectzomboid.gamewikihub.com/multiplayer/co-op-survival
-https://projectzomboid.gamewikihub.com/multiplayer/pvp-guide
-https://projectzomboid.gamewikihub.com/multiplayer/server-admin-tips
-https://projectzomboid.gamewikihub.com/multiplayer/etiquette
+https://project-zomboid.gamewikihub.com/multiplayer/overview
+https://project-zomboid.gamewikihub.com/multiplayer/best-server-settings
+https://project-zomboid.gamewikihub.com/multiplayer/co-op-survival
+https://project-zomboid.gamewikihub.com/multiplayer/pvp-guide
+https://project-zomboid.gamewikihub.com/multiplayer/server-admin-tips
+https://project-zomboid.gamewikihub.com/multiplayer/etiquette
 ```
 
 ---
@@ -1502,6 +1621,7 @@ A working car is not a luxury. It is your backup plan when the neighborhood stop
 Implement the dev changes without rewriting the entire visual identity. Preserve the existing site style and data-driven structure where possible, but make the site more SEO-ready and content-rich.
 
 Priority order:
+
 1. Add metadata system.
 2. Add source/update note system.
 3. Add image support with local `/assets/images/...` paths.
@@ -1511,6 +1631,7 @@ Priority order:
 7. Keep Cloudflare deployment working.
 
 Do not:
+
 - remove existing pages
 - break current routes
 - hotlink random images

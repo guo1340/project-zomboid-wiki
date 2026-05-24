@@ -6,21 +6,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- pzw:head -->
     <title>Server Admin Tips | Project Zomboid Survival Wiki</title>
-    <meta name="description" content="Practical Project Zomboid server admin tips for backups, rules, mods, grief prevention, loot settings, and player management." />
-    <meta name="keywords" content="project zomboid server admin, project zomboid dedicated server, project zomboid server tips" />
-    <link rel="canonical" href="https://projectzomboid.gamewikihub.com/multiplayer/server-admin-tips" />
+    <meta
+      name="description"
+      content="Practical Project Zomboid server admin tips for backups, rules, mods, grief prevention, loot settings, and player management."
+    />
+    <meta
+      name="keywords"
+      content="project zomboid server admin, project zomboid dedicated server, project zomboid server tips"
+    />
+    <link
+      rel="canonical"
+      href="https://project-zomboid.gamewikihub.com/multiplayer/server-admin-tips"
+    />
     <meta property="og:site_name" content="Project Zomboid Survival Wiki" />
-    <meta property="og:title" content="Server Admin Tips | Project Zomboid Survival Wiki" />
-    <meta property="og:description" content="Practical Project Zomboid server admin tips for backups, rules, mods, grief prevention, loot settings, and player management." />
+    <meta
+      property="og:title"
+      content="Server Admin Tips | Project Zomboid Survival Wiki"
+    />
+    <meta
+      property="og:description"
+      content="Practical Project Zomboid server admin tips for backups, rules, mods, grief prevention, loot settings, and player management."
+    />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://projectzomboid.gamewikihub.com/multiplayer/server-admin-tips" />
-    <meta property="og:image" content="https://projectzomboid.gamewikihub.com/assets/images/multiplayer/server-admin-tips.jpg" />
+    <meta
+      property="og:url"
+      content="https://project-zomboid.gamewikihub.com/multiplayer/server-admin-tips"
+    />
+    <meta
+      property="og:image"
+      content="https://project-zomboid.gamewikihub.com/assets/images/multiplayer/server-admin-tips.jpg"
+    />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Server Admin Tips | Project Zomboid Survival Wiki" />
-    <meta name="twitter:description" content="Practical Project Zomboid server admin tips for backups, rules, mods, grief prevention, loot settings, and player management." />
-    <meta name="twitter:image" content="https://projectzomboid.gamewikihub.com/assets/images/multiplayer/server-admin-tips.jpg" />
+    <meta
+      name="twitter:title"
+      content="Server Admin Tips | Project Zomboid Survival Wiki"
+    />
+    <meta
+      name="twitter:description"
+      content="Practical Project Zomboid server admin tips for backups, rules, mods, grief prevention, loot settings, and player management."
+    />
+    <meta
+      name="twitter:image"
+      content="https://project-zomboid.gamewikihub.com/assets/images/multiplayer/server-admin-tips.jpg"
+    />
     <!-- /pzw:head -->
-    <script type="application/ld+json" id="pzw-jsonld">{"@context":"https://schema.org","@type":"Article","headline":"Server Admin Tips","description":"Practical Project Zomboid server admin tips for backups, rules, mods, grief prevention, loot settings, and player management.","image":"https://projectzomboid.gamewikihub.com/assets/images/multiplayer/server-admin-tips.jpg","url":"https://projectzomboid.gamewikihub.com/multiplayer/server-admin-tips","datePublished":"2026-05-22","dateModified":"2026-05-22","author":{"@type":"Organization","name":"Project Zomboid Survival Wiki"},"publisher":{"@type":"Organization","name":"Project Zomboid Survival Wiki","url":"https://projectzomboid.gamewikihub.com"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://projectzomboid.gamewikihub.com/multiplayer/server-admin-tips"}}</script>
+    <script type="application/ld+json" id="pzw-jsonld">
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Server Admin Tips",
+        "description": "Practical Project Zomboid server admin tips for backups, rules, mods, grief prevention, loot settings, and player management.",
+        "image": "https://project-zomboid.gamewikihub.com/assets/images/multiplayer/server-admin-tips.jpg",
+        "url": "https://project-zomboid.gamewikihub.com/multiplayer/server-admin-tips",
+        "datePublished": "2026-05-22",
+        "dateModified": "2026-05-22",
+        "author": {
+          "@type": "Organization",
+          "name": "Project Zomboid Survival Wiki"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Project Zomboid Survival Wiki",
+          "url": "https://project-zomboid.gamewikihub.com"
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://project-zomboid.gamewikihub.com/multiplayer/server-admin-tips"
+        }
+      }
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -95,58 +149,153 @@
     <div class="layout">
       <aside class="left" id="leftNav"></aside>
       <main id="main">
-      
-      <aside class="ad-slot ad-banner" aria-label="Advertisement">
-        <span class="ad-label">Advertisement</span>
-        <ins class="adsbygoogle"
-          style="display:block;width:100%;height:90px;"
-          data-ad-client="ca-pub-1319817671788428"
-          data-ad-slot="6141169453"
-          
-          data-full-width-responsive="true"></ins>
-      </aside>
-    
-      <div class="page article">
-        <div class="breadcrumb"><a href="/multiplayer">Multiplayer</a> / Server Admin Tips</div>
-        <h1>Server Admin Tips</h1>
-        <figure class="page-hero">
-      <img src="/assets/images/multiplayer/server-admin-tips.jpg" alt="A Project Zomboid dedicated server administration console" width="1200" height="500"
-        onerror="this.closest('.page-hero').classList.add('hero-missing');this.remove();">
-      <span class="hero-fallback" aria-hidden="true">Server Admin Tips</span>
-    </figure>
-        <p class="lore">A good admin does not just ban griefers. A good admin prevents confusion before it becomes drama.</p>
-        <h3>Admin Work Is Prevention</h3><p>Most server drama is preventable. Clear rules, regular backups and tested changes stop the arguments that otherwise eat your evenings. Reactive moderation is a last resort, not a strategy.</p><h3>Admin Checklist</h3><ul><li>Write server rules clearly</li><li>Back up saves regularly</li><li>Test mods before adding them</li><li>Announce setting changes</li><li>Define PvP rules</li><li>Define safehouse rules</li><li>Define vehicle ownership rules</li><li>Define loot respawn expectations</li><li>Have a plan for rollback situations</li></ul><h3>Common Admin Problems</h3><ul><li>Adding mods mid-save without testing</li><li>Unclear PvP expectations</li><li>Unlimited loot respawn ruining progression</li><li>No backup before a major change</li><li>Players not knowing what counts as griefing</li></ul><h3>Server Rule Examples</h3><ul><li>No destroying claimed safehouses</li><li>No stealing from claimed safehouse containers</li><li>PvP only outside protected zones</li><li>Do not lure hordes into bases intentionally</li><li>Do not block public roads with wrecks unless it is an approved event</li><li>Vehicle ownership must be respected inside a claimed safehouse</li></ul>
-        <div class="survivor-tip"><span class="st-label">Survivor Tip</span><p>&ldquo;A bored survivor makes reckless decisions. Keep books, a radio and a routine.&rdquo;</p></div>
-        <nav class="related" aria-label="Related pages">
-      <h3>Related Pages</h3>
-      <div class="related-grid">
-        <a class="related-card" href="/multiplayer/best-server-settings">Best Server Settings</a><a class="related-card" href="/mods/server-mods">Server Mods</a><a class="related-card" href="/mods/mod-load-order">Mod Load Order</a>
-      </div>
-    </nav>
-        <aside class="source-notes" aria-label="Sources and update notes">
-      <div class="src-head">Sources &amp; Update Notes</div>
-      <div class="src-meta">
-        <span><strong>Last updated:</strong> 2026-05-22</span>
-        <span><strong>Build focus:</strong> Build 41 stable + Build 42 unstable notes</span>
-      </div>
-      <div class="src-checked"><strong>Sources checked:</strong></div>
-      <ul class="src-list"><li><a href="https://store.steampowered.com/app/108600/Project_Zomboid/" target="_blank" rel="noopener noreferrer">Project Zomboid Steam Store</a><span> — Used for the official game description and broad feature categories.</span></li><li><a href="https://theindiestone.com/forums/" target="_blank" rel="noopener noreferrer">The Indie Stone Forums</a><span> — Used for patch discussion and official forum posts.</span></li></ul>
-      
-      <p class="src-uncertain">Note: Build 42 systems are still changing between unstable patches. Treat exact numbers, recipes and requirements as patch-dependent.</p>
-    </aside>
-      </div>
-      
-      <aside class="ad-slot ad-in-article" aria-label="Advertisement">
-        <span class="ad-label">Advertisement</span>
-        <ins class="adsbygoogle"
-          style="display:block;"
-          data-ad-client="ca-pub-1319817671788428"
-          data-ad-slot="6141169453"
-          data-ad-format="auto"
-          data-full-width-responsive="true"></ins>
-      </aside>
-    
-    </main>
+        <aside class="ad-slot ad-banner" aria-label="Advertisement">
+          <span class="ad-label">Advertisement</span>
+          <ins
+            class="adsbygoogle"
+            style="display: block; width: 100%; height: 90px"
+            data-ad-client="ca-pub-1319817671788428"
+            data-ad-slot="6141169453"
+            data-full-width-responsive="true"
+          ></ins>
+        </aside>
+
+        <div class="page article">
+          <div class="breadcrumb">
+            <a href="/multiplayer">Multiplayer</a> / Server Admin Tips
+          </div>
+          <h1>Server Admin Tips</h1>
+          <figure class="page-hero">
+            <img
+              src="/assets/images/multiplayer/server-admin-tips.jpg"
+              alt="A Project Zomboid dedicated server administration console"
+              width="1200"
+              height="500"
+              onerror="
+                this.closest('.page-hero').classList.add('hero-missing');
+                this.remove();
+              "
+            />
+            <span class="hero-fallback" aria-hidden="true"
+              >Server Admin Tips</span
+            >
+          </figure>
+          <p class="lore">
+            A good admin does not just ban griefers. A good admin prevents
+            confusion before it becomes drama.
+          </p>
+          <h3>Admin Work Is Prevention</h3>
+          <p>
+            Most server drama is preventable. Clear rules, regular backups and
+            tested changes stop the arguments that otherwise eat your evenings.
+            Reactive moderation is a last resort, not a strategy.
+          </p>
+          <h3>Admin Checklist</h3>
+          <ul>
+            <li>Write server rules clearly</li>
+            <li>Back up saves regularly</li>
+            <li>Test mods before adding them</li>
+            <li>Announce setting changes</li>
+            <li>Define PvP rules</li>
+            <li>Define safehouse rules</li>
+            <li>Define vehicle ownership rules</li>
+            <li>Define loot respawn expectations</li>
+            <li>Have a plan for rollback situations</li>
+          </ul>
+          <h3>Common Admin Problems</h3>
+          <ul>
+            <li>Adding mods mid-save without testing</li>
+            <li>Unclear PvP expectations</li>
+            <li>Unlimited loot respawn ruining progression</li>
+            <li>No backup before a major change</li>
+            <li>Players not knowing what counts as griefing</li>
+          </ul>
+          <h3>Server Rule Examples</h3>
+          <ul>
+            <li>No destroying claimed safehouses</li>
+            <li>No stealing from claimed safehouse containers</li>
+            <li>PvP only outside protected zones</li>
+            <li>Do not lure hordes into bases intentionally</li>
+            <li>
+              Do not block public roads with wrecks unless it is an approved
+              event
+            </li>
+            <li>
+              Vehicle ownership must be respected inside a claimed safehouse
+            </li>
+          </ul>
+          <div class="survivor-tip">
+            <span class="st-label">Survivor Tip</span>
+            <p>
+              &ldquo;A bored survivor makes reckless decisions. Keep books, a
+              radio and a routine.&rdquo;
+            </p>
+          </div>
+          <nav class="related" aria-label="Related pages">
+            <h3>Related Pages</h3>
+            <div class="related-grid">
+              <a class="related-card" href="/multiplayer/best-server-settings"
+                >Best Server Settings</a
+              ><a class="related-card" href="/mods/server-mods">Server Mods</a
+              ><a class="related-card" href="/mods/mod-load-order"
+                >Mod Load Order</a
+              >
+            </div>
+          </nav>
+          <aside class="source-notes" aria-label="Sources and update notes">
+            <div class="src-head">Sources &amp; Update Notes</div>
+            <div class="src-meta">
+              <span><strong>Last updated:</strong> 2026-05-22</span>
+              <span
+                ><strong>Build focus:</strong> Build 41 stable + Build 42
+                unstable notes</span
+              >
+            </div>
+            <div class="src-checked"><strong>Sources checked:</strong></div>
+            <ul class="src-list">
+              <li>
+                <a
+                  href="https://store.steampowered.com/app/108600/Project_Zomboid/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Project Zomboid Steam Store</a
+                ><span>
+                  — Used for the official game description and broad feature
+                  categories.</span
+                >
+              </li>
+              <li>
+                <a
+                  href="https://theindiestone.com/forums/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >The Indie Stone Forums</a
+                ><span>
+                  — Used for patch discussion and official forum posts.</span
+                >
+              </li>
+            </ul>
+
+            <p class="src-uncertain">
+              Note: Build 42 systems are still changing between unstable
+              patches. Treat exact numbers, recipes and requirements as
+              patch-dependent.
+            </p>
+          </aside>
+        </div>
+
+        <aside class="ad-slot ad-in-article" aria-label="Advertisement">
+          <span class="ad-label">Advertisement</span>
+          <ins
+            class="adsbygoogle"
+            style="display: block"
+            data-ad-client="ca-pub-1319817671788428"
+            data-ad-slot="6141169453"
+            data-ad-format="auto"
+            data-full-width-responsive="true"
+          ></ins>
+        </aside>
+      </main>
       <aside class="right" id="rightNav"></aside>
     </div>
 
