@@ -135,12 +135,18 @@ function escText(s) {
     .replace(/>/g, "&gt;");
 }
 
-function renderMain(route) {
+function renderRoute(route) {
   CURRENT = route;
   delete require.cache[APP];
   els.main._html = "";
+  els.leftNav._html = "";
+  els.rightNav._html = "";
   require("./js/app.js");
-  return els.main._html;
+  return {
+    main: els.main._html,
+    left: els.leftNav._html,
+    right: els.rightNav._html,
+  };
 }
 
 function headBlock(route) {
@@ -170,6 +176,7 @@ function jsonLdBlock(route) {
 }
 
 function buildPage(template, route) {
+  const rendered = renderRoute(route);
   let html = template;
   html = html.replace(
     /<!-- pzw:head -->[\s\S]*?<!-- \/pzw:head -->/,
@@ -181,7 +188,15 @@ function buildPage(template, route) {
   );
   html = html.replace(
     /<main id="main">[\s\S]*?<\/main>/,
-    '<main id="main">' + renderMain(route) + "</main>",
+    '<main id="main">' + rendered.main + "</main>",
+  );
+  html = html.replace(
+    /<aside class="left" id="leftNav">[\s\S]*?<\/aside>/,
+    '<aside class="left" id="leftNav">' + rendered.left + "</aside>",
+  );
+  html = html.replace(
+    /<aside class="right" id="rightNav">[\s\S]*?<\/aside>/,
+    '<aside class="right" id="rightNav">' + rendered.right + "</aside>",
   );
   return html;
 }

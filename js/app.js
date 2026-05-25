@@ -381,6 +381,7 @@
 
     main.innerHTML = `
       <div class="hero">
+        <img class="hero-bg" src="/assets/images/hero/homepage-hero.jpg" alt="Project Zomboid gameplay scene" loading="eager">
         <div class="hero-fog"></div>
         <div class="hero-inner">
           <span class="hero-kicker">Knox County Survival Manual</span>
@@ -502,9 +503,23 @@
   /* ============================================================
      TRAITS
      ============================================================ */
+  function traitRowsHTML(rows) {
+    return rows.length === 0
+      ? `<tr><td colspan="5"><div class="empty-result">No traits match.</div></td></tr>`
+      : rows.map((t) => `
+        <tr>
+          <td><a href="/traits/${esc(t.id)}" class="row-link">${esc(t.name)}</a></td>
+          <td>${tag(t.polarity, t.polarity === 'positive' ? 'good' : 'bad')}</td>
+          <td class="num">${esc(t.cost)}</td>
+          <td>${esc(t.difficulty)}</td>
+          <td>${esc((t.worthIt || '').split('.')[0])}</td>
+        </tr>`).join('');
+  }
+
   function renderTraitsList() {
     const stateKey = 'traits-filters';
     const state = loadState(stateKey, { polarity: 'all', search: '' });
+    const initialRows = D.traits.slice();
     main.innerHTML = `
       ${adSlot('banner')}
       <div class="page">
@@ -517,13 +532,13 @@
             ${['all', 'positive', 'negative'].map((t) => `<button data-f="polarity" data-v="${t}">${titleCase(t)}</button>`).join('')}
           </div>
           <input type="text" class="filter-search" placeholder="Filter by name…" data-f="search" value="${esc(state.search)}">
-          <span class="result-count" id="traitsCount"></span>
+          <span class="result-count" id="traitsCount">${D.traits.length} of ${D.traits.length}</span>
         </div>
         <table class="data">
           <thead><tr>
             <th>Trait</th><th>Type</th><th class="num">Points</th><th>Difficulty</th><th>Worth It?</th>
           </tr></thead>
-          <tbody id="traitsBody"></tbody>
+          <tbody id="traitsBody">${traitRowsHTML(initialRows)}</tbody>
         </table>
       </div>
       ${adSlot('in-article')}
@@ -536,16 +551,7 @@
         const q = state.search.toLowerCase();
         rows = rows.filter((t) => t.name.toLowerCase().includes(q));
       }
-      $('#traitsBody').innerHTML = rows.length === 0
-        ? `<tr><td colspan="5"><div class="empty-result">No traits match.</div></td></tr>`
-        : rows.map((t) => `
-          <tr>
-            <td><a href="/traits/${esc(t.id)}" class="row-link">${esc(t.name)}</a></td>
-            <td>${tag(t.polarity, t.polarity === 'positive' ? 'good' : 'bad')}</td>
-            <td class="num">${esc(t.cost)}</td>
-            <td>${esc(t.difficulty)}</td>
-            <td>${esc((t.worthIt || '').split('.')[0])}</td>
-          </tr>`).join('');
+      $('#traitsBody').innerHTML = traitRowsHTML(rows);
       $('#traitsCount').textContent = `${rows.length} of ${D.traits.length}`;
       document.querySelectorAll('#traitsTb [data-f="polarity"]').forEach((b) => b.classList.toggle('active', b.dataset.v === state.polarity));
     }
@@ -709,9 +715,22 @@
   /* ============================================================
      WEAPONS
      ============================================================ */
+  function weaponRowsHTML(rows) {
+    return rows.length === 0
+      ? `<tr><td colspan="4"><div class="empty-result">No weapons match.</div></td></tr>`
+      : rows.map((w) => `
+        <tr>
+          <td><a href="/weapons/${esc(w.id)}" class="row-link">${esc(w.name)}</a></td>
+          <td>${tag(w.weaponType, w.weaponType === 'ranged' ? 'bad' : '')}</td>
+          <td>${tag(w.class)}</td>
+          <td>${esc((w.bestSituations || '').split(/[;.]/)[0])}</td>
+        </tr>`).join('');
+  }
+
   function renderWeaponsList() {
     const stateKey = 'weapons-filters';
     const state = loadState(stateKey, { type: 'all', search: '' });
+    const initialRows = D.weapons.slice();
     main.innerHTML = `
       ${adSlot('banner')}
       <div class="page">
@@ -724,11 +743,11 @@
             ${['all', 'melee', 'ranged'].map((t) => `<button data-f="type" data-v="${t}">${titleCase(t)}</button>`).join('')}
           </div>
           <input type="text" class="filter-search" placeholder="Filter by name…" data-f="search" value="${esc(state.search)}">
-          <span class="result-count" id="wpnCount"></span>
+          <span class="result-count" id="wpnCount">${D.weapons.length} of ${D.weapons.length}</span>
         </div>
         <table class="data">
           <thead><tr><th>Weapon</th><th>Type</th><th>Class</th><th>Best For</th></tr></thead>
-          <tbody id="wpnBody"></tbody>
+          <tbody id="wpnBody">${weaponRowsHTML(initialRows)}</tbody>
         </table>
       </div>
       ${adSlot('in-article')}
@@ -741,15 +760,7 @@
         const q = state.search.toLowerCase();
         rows = rows.filter((w) => w.name.toLowerCase().includes(q));
       }
-      $('#wpnBody').innerHTML = rows.length === 0
-        ? `<tr><td colspan="4"><div class="empty-result">No weapons match.</div></td></tr>`
-        : rows.map((w) => `
-          <tr>
-            <td><a href="/weapons/${esc(w.id)}" class="row-link">${esc(w.name)}</a></td>
-            <td>${tag(w.weaponType, w.weaponType === 'ranged' ? 'bad' : '')}</td>
-            <td>${tag(w.class)}</td>
-            <td>${esc((w.bestSituations || '').split(/[;.]/)[0])}</td>
-          </tr>`).join('');
+      $('#wpnBody').innerHTML = weaponRowsHTML(rows);
       $('#wpnCount').textContent = `${rows.length} of ${D.weapons.length}`;
       document.querySelectorAll('#wpnTb [data-f="type"]').forEach((b) => b.classList.toggle('active', b.dataset.v === state.type));
     }
