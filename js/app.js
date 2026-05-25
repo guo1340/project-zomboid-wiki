@@ -543,6 +543,20 @@
       </div>
       ${adSlot('in-article')}
     `;
+    bindTraitsTable();
+  }
+
+  function bindTraitsTable() {
+    if (!D.traits || !D.traits.length) return;
+    const toolbar = $('#traitsTb');
+    const body = $('#traitsBody');
+    const count = $('#traitsCount');
+    const search = toolbar && toolbar.querySelector('input.filter-search');
+    if (!toolbar || !body || !count || !search) return;
+    const stateKey = 'traits-filters';
+    const state = loadState(stateKey, { polarity: 'all', search: search.value || '' });
+    state.polarity = ['all', 'positive', 'negative'].includes(state.polarity) ? state.polarity : 'all';
+    if (state.search) search.value = state.search;
     function applyAndRender() {
       saveState(stateKey, state);
       let rows = D.traits.slice();
@@ -555,11 +569,10 @@
       $('#traitsCount').textContent = `${rows.length} of ${D.traits.length}`;
       document.querySelectorAll('#traitsTb [data-f="polarity"]').forEach((b) => b.classList.toggle('active', b.dataset.v === state.polarity));
     }
-    document.querySelectorAll('#traitsTb [data-f="polarity"]').forEach((b) => {
-      b.onclick = () => { state.polarity = b.dataset.v; applyAndRender(); };
+    toolbar.querySelectorAll('[data-f="polarity"]').forEach((b) => {
+      b.addEventListener('click', () => { state.polarity = b.dataset.v; applyAndRender(); });
     });
-    const si = $('#traitsTb input.filter-search');
-    si.oninput = () => { state.search = si.value; applyAndRender(); };
+    search.addEventListener('input', () => { state.search = search.value; applyAndRender(); });
     applyAndRender();
   }
 
@@ -752,6 +765,20 @@
       </div>
       ${adSlot('in-article')}
     `;
+    bindWeaponsTable();
+  }
+
+  function bindWeaponsTable() {
+    if (!D.weapons || !D.weapons.length) return;
+    const toolbar = $('#wpnTb');
+    const body = $('#wpnBody');
+    const count = $('#wpnCount');
+    const search = toolbar && toolbar.querySelector('input.filter-search');
+    if (!toolbar || !body || !count || !search) return;
+    const stateKey = 'weapons-filters';
+    const state = loadState(stateKey, { type: 'all', search: search.value || '' });
+    state.type = ['all', 'melee', 'ranged'].includes(state.type) ? state.type : 'all';
+    if (state.search) search.value = state.search;
     function applyAndRender() {
       saveState(stateKey, state);
       let rows = D.weapons.slice();
@@ -764,11 +791,10 @@
       $('#wpnCount').textContent = `${rows.length} of ${D.weapons.length}`;
       document.querySelectorAll('#wpnTb [data-f="type"]').forEach((b) => b.classList.toggle('active', b.dataset.v === state.type));
     }
-    document.querySelectorAll('#wpnTb [data-f="type"]').forEach((b) => {
-      b.onclick = () => { state.type = b.dataset.v; applyAndRender(); };
+    toolbar.querySelectorAll('[data-f="type"]').forEach((b) => {
+      b.addEventListener('click', () => { state.type = b.dataset.v; applyAndRender(); });
     });
-    const si = $('#wpnTb input.filter-search');
-    si.oninput = () => { state.search = si.value; applyAndRender(); };
+    search.addEventListener('input', () => { state.search = search.value; applyAndRender(); });
     applyAndRender();
   }
 
@@ -1179,6 +1205,7 @@
      SEARCH (across all entities)
      ============================================================ */
   function buildSearchIndex() {
+    if (Array.isArray(D.searchIndex)) return D.searchIndex;
     const index = [];
     D.guides.forEach((g) => index.push({ title: g.title, sub: 'Guide', href: '/guides/' + g.id }));
     D.traits.forEach((t) => index.push({ title: t.name + ' Trait', sub: 'Trait', href: '/traits/' + t.id }));
@@ -1257,15 +1284,26 @@
     if (!href || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('#')) return;
     const url = new URL(href, location.origin);
     if (url.origin !== location.origin) return;
+    if (!window.__GW_PRERENDER__) return;
     e.preventDefault();
     go(url.pathname);
   });
 
-  window.addEventListener('popstate', () => {
-    leftNav.classList.remove('open');
-    navigate();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+  function hydrateStaticPage() {
+    const route = parseRoute();
+    if (route === '/traits') bindTraitsTable();
+    if (route === '/weapons') bindWeaponsTable();
+    setTimeout(loadAds, 100);
+  }
 
-  navigate();
+  if (window.__GW_PRERENDER__) {
+    window.addEventListener('popstate', () => {
+      leftNav.classList.remove('open');
+      navigate();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    navigate();
+  } else {
+    hydrateStaticPage();
+  }
 })();
